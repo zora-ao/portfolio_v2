@@ -31,10 +31,7 @@ const certificates = [
 
 export default function CertificatesSection() {
   return (
-    <div className="h-full">
-      <h2 className="mb-6 text-2xl font-bold text-white">
-        My Certificates
-      </h2>
+    <div className="h-auto my-2">
 
       <div className="h-full overflow-y-auto scrollbar-hide">
         <div className="grid grid-cols-1 gap-8 md:grid-cols-2">

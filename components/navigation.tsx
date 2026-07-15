@@ -16,8 +16,8 @@ export default function BottomNav({
   setActiveSection,
 }: BottomNavProps) {
   return (
-    <div className="mb-2 flex justify-end">
-      <nav className="flex items-center gap-12 rounded-2xl border border-zinc-700 bg-zinc-950 px-8 py-4">
+    <div className="flex justify-end">
+      <nav className="flex items-center gap-12 rounded-2xl border border-zinc-700 bg-zinc-950 px-8 py-2">
 
         <button onClick={() => setActiveSection("home")}>
           <Home
