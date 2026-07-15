@@ -23,25 +23,25 @@ export default function SocialsCard() {
           <a
             href="https://github.com/yourusername"
             target="_blank"
-            className="rounded-xl border border-zinc-700 p-4 transition-all hover:border-violet-500 hover:bg-zinc-800"
+            className="rounded-full border border-zinc-700 p-2 transition-all hover:border-violet-500 hover:bg-zinc-800"
           >
-            <SiGithub className="h-6 w-6 text-white" />
+            <SiGithub className="h-4 w-4 text-white" />
           </a>
 
           <a
             href="https://instagram.com/yourusername"
             target="_blank"
-            className="rounded-xl border border-zinc-700 p-4 transition-all hover:border-violet-500 hover:bg-zinc-800"
+            className="rounded-full border border-zinc-700 p-2 transition-all hover:border-violet-500 hover:bg-zinc-800"
           >
-            <SiInstagram className="h-6 w-6 text-white" />
+            <SiInstagram className="h-4 w-4 text-white" />
           </a>
 
           <a
             href="https://facebook.com/yourusername"
             target="_blank"
-            className="rounded-xl border border-zinc-700 p-4 transition-all hover:border-violet-500 hover:bg-zinc-800"
+            className="rounded-full border border-zinc-700 p-2 transition-all hover:border-violet-500 hover:bg-zinc-800"
           >
-            <SiFacebook className="h-6 w-6 text-white" />
+            <SiFacebook className="h-4 w-4 text-white" />
           </a>
         </div>
       </CardContent>

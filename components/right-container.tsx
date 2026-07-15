@@ -13,7 +13,7 @@ import { Section } from "@/types/navigation";
 
 export default function RightContainer() {
   const [activeSection, setActiveSection] =
-    useState<Section>("home");
+    useState<Section>("about");
 
   const renderContent = () => {
     switch (activeSection) {
