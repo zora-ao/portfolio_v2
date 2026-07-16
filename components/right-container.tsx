@@ -35,9 +35,9 @@ export default function RightContainer() {
   };
 
   return (
-    <section className="flex h-full min-h-0 flex-col rounded-3xl border border-zinc-700 bg-zinc-900 px-6 ">
+    <section className="flex h-full min-h-0 flex-col rounded-3xl border border-primary bg-background px-6 ">
       <div className="flex justify-between items-center my-2 mx-4">
-        <h2 className="text-xl text-white">
+        <h2 className="text-xl text-foreground">
           {activeSection.toUpperCase()}
         </h2>
         <BottomNav

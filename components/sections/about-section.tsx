@@ -62,9 +62,9 @@ export default function AboutSection() {
 
       {/* Intro */}
       <motion.div variants={fadeUp}>
-        <Card className="border-zinc-700 bg-zinc-800/50 backdrop-blur-sm">
+        <Card className="border border-primary bg-background backdrop-blur-sm">
           <CardContent className="px-6">
-            <p className="leading-8 text-zinc-300">
+            <p className="leading-8 text-foreground">
               I am Carl, a Computer Science student passionate about
               building modern web applications and continuously
               improving my development skills.
@@ -91,15 +91,15 @@ export default function AboutSection() {
         className="grid gap-3 md:grid-cols-3"
       >
         <motion.div whileHover={{ y: -5 }}>
-          <Card className="border-zinc-700 bg-zinc-800 transition-all">
+          <Card className="border border-primary bg-background transition-all">
             <CardContent className="p-5">
               <Code2 className="mb-3 h-5 w-5 text-violet-400" />
 
-              <h2 className="text-3xl font-bold text-white">
+              <h2 className="text-3xl font-bold text-foreground">
                 5127+
               </h2>
 
-              <p className="text-zinc-400">
+              <p className="text-foreground">
                 freeCodeCamp Points
               </p>
             </CardContent>
@@ -107,15 +107,15 @@ export default function AboutSection() {
         </motion.div>
 
         <motion.div whileHover={{ y: -5 }}>
-          <Card className="border-zinc-700 bg-zinc-800 transition-all">
+          <Card className="border border-primary bg-background transition-all">
             <CardContent className="p-5">
               <FolderGit2 className="mb-3 h-5 w-5 text-violet-400" />
 
-              <h2 className="text-3xl font-bold text-white">
+              <h2 className="text-3xl font-bold text-foreground">
                 5+
               </h2>
 
-              <p className="text-zinc-400">
+              <p className="text-foreground">
                 Personal Projects
               </p>
             </CardContent>
@@ -123,15 +123,15 @@ export default function AboutSection() {
         </motion.div>
 
         <motion.div whileHover={{ y: -5 }}>
-          <Card className="border-zinc-700 bg-zinc-800 transition-all">
+          <Card className="border border-primary bg-background transition-all">
             <CardContent className="p-5">
               <GraduationCap className="mb-3 h-5 w-5 text-violet-400" />
 
-              <h2 className="text-3xl font-bold text-white">
+              <h2 className="text-3xl font-bold text-foreground">
                 2025
               </h2>
 
-              <p className="text-zinc-400">
+              <p className="text-foreground">
                 Started Computer Science
               </p>
             </CardContent>

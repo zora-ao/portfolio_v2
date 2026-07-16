@@ -1,5 +1,5 @@
-import { Briefcase, Home, Mail, Sun, User } from "lucide-react";
-import ThemeToggle from "./theme-toggle";
+import { Briefcase, Home, Mail, User } from "lucide-react";
+import { AnimatedThemeToggler } from "./ui/animated-theme-toggler";
 
 type Section =
   | "home"
@@ -18,14 +18,14 @@ export default function BottomNav({
 }: BottomNavProps) {
   return (
     <div className="flex justify-end">
-      <nav className="flex items-center gap-12 rounded-2xl border border-zinc-700 bg-zinc-950 px-8 py-2">
+      <nav className="flex items-center gap-12 rounded-2xl border border-primary bg-background px-8 py-2">
 
         <button onClick={() => setActiveSection("home")}>
           <Home
             className={`h-5 w-5 ${
               activeSection === "home"
                 ? "text-violet-400"
-                : "text-white"
+                : "text-foreground"
             }`}
           />
         </button>
@@ -35,7 +35,7 @@ export default function BottomNav({
             className={`h-5 w-5 ${
               activeSection === "about"
                 ? "text-violet-400"
-                : "text-white"
+                : "text-foreground"
             }`}
           />
         </button>
@@ -45,7 +45,7 @@ export default function BottomNav({
             className={`h-5 w-5 ${
               activeSection === "certificates"
                 ? "text-violet-400"
-                : "text-white"
+                : "text-foreground"
             }`}
           />
         </button>
@@ -55,12 +55,12 @@ export default function BottomNav({
             className={`h-5 w-5 ${
               activeSection === "contact"
                 ? "text-violet-400"
-                : "text-white"
+                : "text-foreground"
             }`}
           />
         </button>
 
-        <ThemeToggle />
+        <AnimatedThemeToggler className="border border-primary rounded-lg p-2" />
 
       </nav>
     </div>

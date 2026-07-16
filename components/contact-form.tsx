@@ -60,7 +60,7 @@ export default function ContactForm() {
         <Input
           placeholder="Your Name"
           {...form.register("name")}
-          className="border-zinc-700 bg-zinc-900 text-white"
+          className="border-primary bg-background text-foreground"
         />
 
         {form.formState.errors.name && (
@@ -75,7 +75,7 @@ export default function ContactForm() {
           type="email"
           placeholder="Your Email"
           {...form.register("email")}
-          className="border-zinc-700 bg-zinc-900 text-white"
+          className="border-primary bg-background text-foreground"
         />
 
         {form.formState.errors.email && (
@@ -90,7 +90,7 @@ export default function ContactForm() {
           rows={6}
           placeholder="Your Message..."
           {...form.register("message")}
-          className="border-zinc-700 bg-zinc-900 text-white"
+          className="border-primary bg-background text-foreground"
         />
 
         {form.formState.errors.message && (
@@ -103,7 +103,7 @@ export default function ContactForm() {
       <Button
         type="submit"
         disabled={isPending}
-        className="bg-violet-600 hover:bg-violet-700"
+        className="bg-violet-600 hover:bg-viprimary"
       >
         <Send className="mr-2 h-4 w-4" />
 

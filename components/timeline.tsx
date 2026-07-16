@@ -51,7 +51,7 @@ export default function Timeline({
 
             {index !== items.length - 1 && (
               <>
-                <div className="absolute top-4 h-full w-[2px] bg-zinc-700" />
+                <div className="absolute top-4 h-full w-[2px] bg-background" />
 
                 <motion.div
                   initial={{
@@ -73,15 +73,15 @@ export default function Timeline({
 
           {/* Content */}
           <div className="pb-10">
-            <p className="font-semibold text-violet-400">
+            <p className="font-semibold text-foreground">
               {item.year}
             </p>
 
-            <h3 className="text-lg font-semibold text-white">
+            <h3 className="text-lg font-semibold text-foreground">
               {item.title}
             </h3>
 
-            <p className="mt-1 text-zinc-400">
+            <p className="mt-1 text-foreground text-sm">
               {item.description}
             </p>
           </div>

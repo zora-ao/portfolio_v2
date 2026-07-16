@@ -14,10 +14,10 @@ import ContactForm from "../contact-form";
 
 export default function ContactSection() {
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 py-2">
       {/* Header */}
       <div>
-        <p className="mt-4 max-w-2xl text-zinc-400 bg-zinc-800 p-4 rounded-xl">
+        <p className="mt-4 max-w-full border border-primary text-foreground bg-background p-4 rounded-xl">
           Interested in working together, discussing a project,
           or just saying hello? Feel free to reach out.
         </p>
@@ -29,16 +29,16 @@ export default function ContactSection() {
           href="mailto:youremail@example.com"
           className="block"
         >
-          <Card className="border-zinc-700 bg-zinc-800 transition-all hover:border-violet-500">
+          <Card className="border border-primary bg-background transition-all hover:border-violet-500">
             <CardContent className="flex items-center gap-4 p-5">
-              <Mail className="h-5 w-5 text-violet-400" />
+              <Mail className="h-5 w-5 text-foreground" />
 
               <div>
-                <p className="font-medium text-white">
+                <p className="font-medium text-foreground">
                   Email
                 </p>
 
-                <p className="text-sm text-zinc-400">
+                <p className="text-sm text-foreground">
                   Contact Me
                 </p>
               </div>
@@ -52,16 +52,16 @@ export default function ContactSection() {
           rel="noopener noreferrer"
           className="block"
         >
-          <Card className="border-zinc-700 bg-zinc-800 transition-all hover:border-violet-500">
+          <Card className="border-primary border bg-background transition-all hover:border-violet-500">
             <CardContent className="flex items-center gap-4 p-5">
-              <SiGithub className="h-5 w-5 text-violet-400" />
+              <SiGithub className="h-5 w-5 text-foreground" />
 
               <div>
-                <p className="font-medium text-white">
+                <p className="font-medium text-foreground">
                   GitHub
                 </p>
 
-                <p className="text-sm text-zinc-400">
+                <p className="text-sm text-foreground">
                   View Projects
                 </p>
               </div>
@@ -75,16 +75,16 @@ export default function ContactSection() {
           rel="noopener noreferrer"
           className="block"
         >
-          <Card className="border-zinc-700 bg-zinc-800 transition-all hover:border-violet-500">
+          <Card className="border-primary border bg-background transition-all hover:border-violet-500">
             <CardContent className="flex items-center gap-4 p-5">
-              <SiLinkerd className="h-5 w-5 text-violet-400" />
+              <SiLinkerd className="h-5 w-5 text-foreground" />
 
               <div>
-                <p className="font-medium text-white">
+                <p className="font-medium text-foreground">
                   LinkedIn
                 </p>
 
-                <p className="text-sm text-zinc-400">
+                <p className="text-sm texforeground">
                   Let's Connect
                 </p>
               </div>
