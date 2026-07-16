@@ -3,6 +3,7 @@ import { Card, CardContent } from "./ui/card";
 import InfoBadges from "./info-badges";
 import { Download, Mail } from "lucide-react";
 import { Button } from "./ui/button";
+import PixelTransition from "./ui/PixelTransition";
 
 export default function ProfileCard() {
   return (
@@ -10,11 +11,37 @@ export default function ProfileCard() {
       <CardContent className="px-6">
         <div className="flex gap-4">
           <div className="relative h-28 w-28 overflow-hidden rounded-xl border border-primary">
-            <Image
-              src="/profile.png"
-              alt="Profile"
-              fill
-              className="object-cover"
+            <PixelTransition
+              firstContent={
+                <img
+                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQR1yHLhFxkJZV5wgstXnEs2lKGimVXrcOkSwePXt3R-7g4jNl8_4Ta4_Y&s=10"
+                  alt="default pixel transition content, a cat!"
+                  style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                />
+              }
+              secondContent={
+                <div
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    display: "grid",
+                    placeItems: "center",
+                    backgroundColor: "#111"
+                  }}
+                >
+                  <Image
+                      src="/profile.png"
+                      alt="Profile"
+                      fill
+                      className="object-cover"
+                    />
+                </div>
+              }
+              gridSize={8}
+              pixelColor="#ffffff"
+              once={false}
+              animationStepDuration={0.4}
+              className="custom-pixel-card"
             />
           </div>
 
