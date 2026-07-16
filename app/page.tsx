@@ -5,7 +5,7 @@ import RightContainer from "@/components/right-container";
 
 export default function Home() {
   return (
-    <main className="h-screen bg-black px-8 py-4 overflow-hidden">
+    <main className="h-screen bg-background px-8 py-4 overflow-hidden">
       <div className="mx-auto h-full max-w-7xl">
         <div className="grid h-full gap-8 lg:grid-cols-[430px_1fr]">
 

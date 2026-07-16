@@ -50,14 +50,14 @@ const categories = [
 
 export default function SkillsCard() {
   return (
-    <Card className="border-zinc-700 bg-zinc-900">
+    <Card className="border border-primary bg-background">
       <CardContent className="px-6">
         <div className="mb-6 text-center">
-          <h3 className="text-xl font-semibold text-white">
+          <h3 className="text-xl font-semibold text-foreground">
             Tech Stack
           </h3>
 
-          <p className="mt-1 text-sm text-zinc-400">
+          <p className="mt-1 text-sm text-foreground">
             Technologies I use to build applications
           </p>
         </div>
@@ -65,7 +65,7 @@ export default function SkillsCard() {
         <div className="space-y-2">
           {categories.map((category) => (
             <div key={category.title}>
-              <h1 className="mb-3 text-sm font-medium tracking-wide text-zinc-500">
+              <h1 className="mb-3 text-sm font-medium tracking-wide text-foreground">
                 {category.title}
               </h1>
 
@@ -79,10 +79,10 @@ export default function SkillsCard() {
                       className="
                         flex items-center gap-2
                         rounded-lg
-                        border border-zinc-700
-                        bg-zinc-800/50
+                        border border-border
+                        bg-background
                         px-3 py-2
-                        text-sm text-zinc-200
+                        text-sm text-foreground
                         transition-all duration-200
                         hover:border-violet-500
                         hover:bg-zinc-800
@@ -91,7 +91,7 @@ export default function SkillsCard() {
                     >
                       <Icon
                         size={14}
-                        className="text-zinc-400"
+                        className="text-foreground"
                       />
 
                       <span>{skill.name}</span>

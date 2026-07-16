@@ -1,4 +1,5 @@
 import { Briefcase, Home, Mail, Sun, User } from "lucide-react";
+import ThemeToggle from "./theme-toggle";
 
 type Section =
   | "home"
@@ -59,9 +60,7 @@ export default function BottomNav({
           />
         </button>
 
-        <button>
-          <Sun className="h-5 w-5 text-white" />
-        </button>
+        <ThemeToggle />
 
       </nav>
     </div>

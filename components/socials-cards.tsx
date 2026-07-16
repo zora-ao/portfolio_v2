@@ -7,14 +7,14 @@ import {
 
 export default function SocialsCard() {
   return (
-    <Card className="border-zinc-700 bg-zinc-900">
+    <Card className="border border-primary bg-background">
       <CardContent className="px-6">
         <div className="mb-4 text-center">
-          <h3 className="text-lg font-semibold text-white">
+          <h3 className="text-lg font-semibold text-foreground">
             Connect With Me
           </h3>
 
-          <p className="text-sm text-zinc-400">
+          <p className="text-sm text-foreground">
             Find me on these platforms
           </p>
         </div>
@@ -23,25 +23,25 @@ export default function SocialsCard() {
           <a
             href="https://github.com/yourusername"
             target="_blank"
-            className="rounded-full border border-zinc-700 p-2 transition-all hover:border-violet-500 hover:bg-zinc-800"
+            className="rounded-full border border-primary p-2 transition-all hover:border-violet-500 hover:bg-zinc-800"
           >
-            <SiGithub className="h-4 w-4 text-white" />
+            <SiGithub className="h-4 w-4 text-foreground" />
           </a>
 
           <a
             href="https://instagram.com/yourusername"
             target="_blank"
-            className="rounded-full border border-zinc-700 p-2 transition-all hover:border-violet-500 hover:bg-zinc-800"
+            className="rounded-full border border-primary p-2 transition-all hover:border-violet-500 hover:bg-zinc-800"
           >
-            <SiInstagram className="h-4 w-4 text-white" />
+            <SiInstagram className="h-4 w-4 text-foreground" />
           </a>
 
           <a
             href="https://facebook.com/yourusername"
             target="_blank"
-            className="rounded-full border border-zinc-700 p-2 transition-all hover:border-violet-500 hover:bg-zinc-800"
+            className="rounded-full border border-primary p-2 transition-all hover:border-violet-500 hover:bg-zinc-800"
           >
-            <SiFacebook className="h-4 w-4 text-white" />
+            <SiFacebook className="h-4 w-4 text-foreground" />
           </a>
         </div>
       </CardContent>

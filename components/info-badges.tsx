@@ -41,10 +41,10 @@ export default function InfoBadges() {
             className="
               flex items-center gap-2
               rounded-full
-              border border-zinc-700
-              bg-zinc-800/50
+              border border-primary
+              bg-background
               px-3 py-2
-              text-sm text-zinc-200
+              text-sm text-foreground
             "
           >
             <Icon className="h-3.5 w-3.5 text-violet-400" />

@@ -6,10 +6,10 @@ import { Button } from "./ui/button";
 
 export default function ProfileCard() {
   return (
-    <Card className="border-zinc-700 bg-zinc-900">
+    <Card className="border border-primary bg-background">
       <CardContent className="px-6">
         <div className="flex gap-4">
-          <div className="relative h-28 w-28 overflow-hidden rounded-xl border">
+          <div className="relative h-28 w-28 overflow-hidden rounded-xl border border-primary">
             <Image
               src="/profile.png"
               alt="Profile"
@@ -19,7 +19,7 @@ export default function ProfileCard() {
           </div>
 
           <div>
-            <h2 className="text-xl font-bold text-white">
+            <h2 className="text-xl font-bold text-foreground">
               Carl Jasper Ramos
             </h2>
 
@@ -27,14 +27,14 @@ export default function ProfileCard() {
               Aspiring Full Stack Developer
             </p>
 
-            <p className="text-white font-semibold">
+            <p className="text-foreground font-semibold">
               “Pain is inevitable. Suffering is optional.” <br />
               - Haruki Murakami
             </p>
           </div>
         </div>
 
-        <div className="mt-6 rounded-xl border border-zinc-700 p-4">
+        <div className="mt-6 rounded-xl border border-primary p-4">
           <InfoBadges />
         </div>
 
