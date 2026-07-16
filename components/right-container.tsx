@@ -9,6 +9,7 @@ import CertificatesSection from "./sections/certificates-section";
 import AboutSection from "./sections/about-section";
 import ContactSection from "./sections/contact-section";
 import { Section } from "@/types/navigation";
+import ProjectsSection from "./sections/projects-section";
 
 
 export default function RightContainer() {
@@ -17,11 +18,12 @@ export default function RightContainer() {
 
   const renderContent = () => {
     switch (activeSection) {
-      case "home":
-        return <HomeSection />;
 
       case "about":
         return <AboutSection />;
+
+      case "projects":
+        return <ProjectsSection />;
 
       case "certificates":
         return <CertificatesSection />;

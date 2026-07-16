@@ -1,5 +1,5 @@
 export type Section =
-  | "home"
   | "about"
+  | "projects"
   | "certificates"
   | "contact";
