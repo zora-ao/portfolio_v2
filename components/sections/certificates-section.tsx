@@ -1,75 +1,141 @@
+"use client";
+
 import Image from "next/image";
-import BottomNav from "../navigation";
-import { Card, CardContent } from "../ui/card";
 import { Link2 } from "lucide-react";
 
-const certificates = [
-  {
-    name: "Legacy Responsive Web Design",
-    src: "/certificates/legacy_responsive_web_design.png",
-    link: "_blank"
-  },
-  {
-    name: "Legacy Algorithm and Data Structure",
-    src: "/certificates/legacy_responsive_web_design.png",
-    link: "_blank"
-  },
-  {
-    name: "Legacy",
-    src: "/certificates/legacy_responsive_web_design.png",
-    link: "_blank"
-  },
-  {
-    name: "Legacy",
-    src: "/certificates/legacy_responsive_web_design.png",
-    link: "_blank"
-  },
-  {
-    name: "Legacy",
-    src: "/certificates/legacy_responsive_web_design.png",
-    link: "_blank"
-  },
-  {
-    name: "Legacy",
-    src: "/certificates/legacy_responsive_web_design.png",
-    link: "_blank"
-  },
-];
+import { certificates } from "@/data/certificates";
+
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
+
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+
+import { useState } from "react";
 
 export default function CertificatesSection() {
+  const [selectedCertificate, setSelectedCertificate] =
+    useState<(typeof certificates)[number] | null>(null);
+
   return (
-    <div className="h-auto my-2">
+    <>
+      <div className="space-y-6 my-4">
 
-      <div className="h-full overflow-y-auto scrollbar-hide">
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
-          {certificates.map((certificate, i) => (
-            <div
-              key={i}
-              className="flex flex-col items-center space-y-3 bg-background p-4 rounded-xl"
+        <div className="grid gap-6 md:grid-cols-2">
+          {certificates.map((certificate) => (
+            <Card
+              key={certificate.name}
+              onClick={() =>
+                setSelectedCertificate(certificate)
+              }
+              className="
+                cursor-pointer
+                border
+                border-primary
+                bg-card
+                transition-all
+              "
             >
-              <Image
-                src={certificate.src}
-                alt={certificate.name}
-                width={500}
-                height={300}
-                className="w-full border border-primary object-cover"
-              />
+              <CardContent className="px-4 text-center">
+                <div className="space-y-4">
+                  <div className="overflow-hidden border border-border">
+                    <Image
+                      src={certificate.image}
+                      alt={certificate.name}
+                      width={600}
+                      height={400}
+                      className="
+                        w-full
+                        object-cover
+                        transition-transform
+                        duration-300
+                      "
+                    />
+                  </div>
 
-              <div className="flex justify-around w-full border border-primary py-2 rounded-sm">
-                <h3 className="text-center text-sm text-foreground">
-                  {certificate.name}
-                </h3>
+                  <div>
+                    <h3 className="font-semibold text-foreground">
+                      {certificate.name}
+                    </h3>
 
-                <a href={certificate.link} target="_blank" rel="noopener noreferrer"
-                  className="text-foreground"
-                >
-                  <Link2 />
-                </a>
-              </div>
-            </div>
+                    <p className="text-sm text-muted-foreground">
+                      {certificate.issuer}
+                    </p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
           ))}
         </div>
       </div>
-    </div>
+
+      <Dialog
+        open={!!selectedCertificate}
+        onOpenChange={() =>
+          setSelectedCertificate(null)
+        }
+      >
+        <DialogContent className="max-w-4xl">
+          {selectedCertificate && (
+            <>
+              <DialogHeader>
+                <DialogTitle className="flex w-3/4 text-center mx-auto">
+                  {selectedCertificate.name}
+                </DialogTitle>
+              </DialogHeader>
+
+              <div className="space-y-6">
+                <Image
+                  src={selectedCertificate.image}
+                  alt={selectedCertificate.name}
+                  width={1200}
+                  height={800}
+                  className="
+                    w-full
+                    border
+                    border-border
+                  "
+                />
+
+                <div className="space-y-2">
+                  <p>
+                    <span className="font-semibold">
+                      Issuer:
+                    </span>{" "}
+                    {selectedCertificate.issuer}
+                  </p>
+
+                  <p>
+                    <span className="font-semibold">
+                      Date Earned:
+                    </span>{" "}
+                    {selectedCertificate.date}
+                  </p>
+                </div>
+
+                <p className="text-muted-foreground">
+                  {selectedCertificate.description}
+                </p>
+
+                <a
+                  href={selectedCertificate.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Button>
+                    <Link2 className="mr-2 h-4 w-4" />
+                    View Credential
+                  </Button>
+                </a>
+              </div>
+            </>
+          )}
+        </DialogContent>
+      </Dialog>
+    </>
   );
 }

@@ -32,9 +32,19 @@ const PixelTransition: React.FC<PixelTransitionProps> = ({
   const delayedCallRef = useRef<gsap.core.Tween | null>(null);
 
   const [isActive, setIsActive] = useState<boolean>(false);
+  
+  // 1. Start with a safe default state for server-side rendering
+  const [isTouchDevice, setIsTouchDevice] = useState<boolean>(false);
 
-  const isTouchDevice =
-    'ontouchstart' in window || navigator.maxTouchPoints > 0 || window.matchMedia('(pointer: coarse)').matches;
+  // 2. Safely detect the touch device capability once mounted in the browser
+  useEffect(() => {
+    const hasTouch =
+      'ontouchstart' in window || 
+      (navigator && navigator.maxTouchPoints > 0) || 
+      window.matchMedia('(pointer: coarse)').matches;
+    
+    setIsTouchDevice(hasTouch);
+  }, []);
 
   useEffect(() => {
     const pixelGridEl = pixelGridRef.current;
@@ -115,6 +125,7 @@ const PixelTransition: React.FC<PixelTransitionProps> = ({
     if (!isActive) animatePixels(true);
     else if (isActive && !once) animatePixels(false);
   };
+  
   return (
     <div
       ref={containerRef}
@@ -123,9 +134,8 @@ const PixelTransition: React.FC<PixelTransitionProps> = ({
         bg-[#222]
         text-white
         rounded-[15px]
-        border-2
-        border-white
-        w-[300px]
+        w-full
+        h-full
         max-w-full
         relative
         overflow-hidden

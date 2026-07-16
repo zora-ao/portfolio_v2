@@ -96,11 +96,11 @@ export default function AboutSection() {
               <Code2 className="mb-3 h-5 w-5 text-violet-400" />
 
               <h2 className="text-3xl font-bold text-foreground">
-                5127+
+                4+
               </h2>
 
               <p className="text-foreground">
-                freeCodeCamp Points
+                fCC Certificates
               </p>
             </CardContent>
           </Card>

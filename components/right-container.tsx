@@ -4,7 +4,7 @@ import { useState } from "react";
 
 import BottomNav from "./navigation";
 
-import HomeSection from "./sections/home-section";
+import HomeSection from "./sections/projects-section";
 import CertificatesSection from "./sections/certificates-section";
 import AboutSection from "./sections/about-section";
 import ContactSection from "./sections/contact-section";

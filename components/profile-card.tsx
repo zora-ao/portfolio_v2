@@ -10,7 +10,7 @@ export default function ProfileCard() {
     <Card className="border border-primary bg-background">
       <CardContent className="px-6">
         <div className="flex gap-4">
-          <div className="relative h-28 w-28 overflow-hidden rounded-xl border border-primary">
+          <div className="relative h-24 w-24 overflow-hidden rounded-xl border border-primary">
             <PixelTransition
               firstContent={
                 <img

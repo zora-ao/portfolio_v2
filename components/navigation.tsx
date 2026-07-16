@@ -1,9 +1,9 @@
-import { Briefcase, Home, Mail, User } from "lucide-react";
+import { Coffee, Mail, ShieldCheck, User } from "lucide-react";
 import { AnimatedThemeToggler } from "./ui/animated-theme-toggler";
 
 type Section =
-  | "home"
   | "about"
+  | "projects"
   | "certificates"
   | "contact";
 
@@ -20,16 +20,6 @@ export default function BottomNav({
     <div className="flex justify-end">
       <nav className="flex items-center gap-12 rounded-2xl border border-primary bg-background px-8 py-2">
 
-        <button onClick={() => setActiveSection("home")}>
-          <Home
-            className={`h-5 w-5 ${
-              activeSection === "home"
-                ? "text-violet-400"
-                : "text-foreground"
-            }`}
-          />
-        </button>
-
         <button onClick={() => setActiveSection("about")}>
           <User
             className={`h-5 w-5 ${
@@ -40,8 +30,18 @@ export default function BottomNav({
           />
         </button>
 
+        <button onClick={() => setActiveSection("projects")}>
+          <Coffee
+            className={`h-5 w-5 ${
+              activeSection === "projects"
+                ? "text-violet-400"
+                : "text-foreground"
+            }`}
+          />
+        </button>
+
         <button onClick={() => setActiveSection("certificates")}>
-          <Briefcase
+          <ShieldCheck
             className={`h-5 w-5 ${
               activeSection === "certificates"
                 ? "text-violet-400"
