@@ -14,7 +14,7 @@ import ContactForm from "../contact-form";
 
 export default function ContactSection() {
   return (
-    <div className="space-y-6 py-2">
+    <div className="space-y-6 md:p-0 pb-24">
       {/* Header */}
       <div>
         <p className="mt-4 max-w-full border border-primary text-foreground bg-background p-4 rounded-xl">
@@ -23,14 +23,15 @@ export default function ContactSection() {
         </p>
       </div>
 
+      <div className="flex md:flex-row-reverse flex-col justify-evenly gap-x-2 space-y-4 items-center">
       {/* Contact Cards */}
-      <div className="grid gap-4 md:grid-cols-3">
+      <div className="grid gap-2 md:grid-cols-1 grid-cols-3">
         <a
           href="mailto:youremail@example.com"
           className="block"
         >
           <Card className="border border-primary bg-background transition-all hover:border-violet-500">
-            <CardContent className="flex items-center gap-4 p-5">
+            <CardContent className="flex flex-col md:flex-row md:text-left text-center items-center gap-4 md:px-5">
               <Mail className="h-5 w-5 text-foreground" />
 
               <div>
@@ -53,7 +54,7 @@ export default function ContactSection() {
           className="block"
         >
           <Card className="border-primary border bg-background transition-all hover:border-violet-500">
-            <CardContent className="flex items-center gap-4 p-5">
+            <CardContent className="flex flex-col md:flex-row md:text-left text-center items-center gap-4 md:px-5">
               <SiGithub className="h-5 w-5 text-foreground" />
 
               <div>
@@ -76,7 +77,7 @@ export default function ContactSection() {
           className="block"
         >
           <Card className="border-primary border bg-background transition-all hover:border-violet-500">
-            <CardContent className="flex items-center gap-4 p-5">
+            <CardContent className="flex flex-col md:flex-row md:text-left text-center items-center gap-4 md:px-5">
               <SiLinkerd className="h-5 w-5 text-foreground" />
 
               <div>
@@ -95,6 +96,7 @@ export default function ContactSection() {
 
       {/* Contact Form */}
       <ContactForm />
+      </div>
     </div>
   );
 }

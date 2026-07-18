@@ -23,7 +23,7 @@ export default function CertificatesSection() {
 
   return (
     <>
-      <div className="space-y-6 my-4">
+      <div className="space-y-6 md:my-4 md:p-0 pb-24 pt-10">
 
         <div className="grid gap-6 md:grid-cols-2">
           {certificates.map((certificate) => (
@@ -126,7 +126,7 @@ export default function CertificatesSection() {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <Button>
+                  <Button className="bg-background text-foreground border-primary">
                     <Link2 className="mr-2 h-4 w-4" />
                     View Credential
                   </Button>

@@ -19,7 +19,7 @@ export default function ProjectsSection() {
 
   return (
     <>
-      <div className="my-4 space-y-8">
+      <div className="my-4 space-y-8 pb-20">
         <div className="space-y-6">
           {projects.map((project) => (
             <Card

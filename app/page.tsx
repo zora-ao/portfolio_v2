@@ -15,11 +15,11 @@ export default function Home() {
     useState<Section>("profile");
 
   return (
-    <main className="h-screen overflow-hidden bg-background px-4 py-4 lg:px-8">
+    <main className="h-screen overflow-hidden bg-background md:px-4 md:py-4 lg:px-8">
       {/* ================= MOBILE ================= */}
       <div className="h-full lg:hidden">
         {activeSection === "profile" ? (
-          <div className="h-full overflow-y-auto pb-24 scrollbar-hide">
+          <div className="h-full overflow-y-auto pb-24 scrollbar-hide px-4">
             <div className="space-y-4">
               <ProfileCard />
               <SkillsCard />

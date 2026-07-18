@@ -54,7 +54,7 @@ export default function ContactForm() {
   return (
     <form
       onSubmit={form.handleSubmit(onSubmit)}
-      className="space-y-4"
+      className="space-y-4 md:w-2/3 w-full text-center border border-primary px-3 py-5 rounded-xl"
     >
       <div className="space-y-1">
         <Input
@@ -103,7 +103,7 @@ export default function ContactForm() {
       <Button
         type="submit"
         disabled={isPending}
-        className="bg-violet-600 hover:bg-viprimary"
+        className="bg-violet-600 hover:bg-viprimary text-foreground w-full"
       >
         <Send className="mr-2 h-4 w-4" />
 

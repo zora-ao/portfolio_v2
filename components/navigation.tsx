@@ -2,13 +2,14 @@
 
 import {
   User,
-  Home,
+  PersonStanding,
   Briefcase,
   Award,
   Mail,
 } from "lucide-react";
 
 import { Section } from "@/types/navigation";
+import { AnimatedThemeToggler } from "./ui/animated-theme-toggler";
 
 interface BottomNavProps {
   activeSection: Section;
@@ -26,7 +27,7 @@ const navItems = [
   },
   {
     id: "about" as const,
-    icon: Home,
+    icon: PersonStanding,
     label: "About",
   },
   {
@@ -63,10 +64,12 @@ export default function BottomNav({
         mobile
           ? `
             fixed
-            bottom-4
+            bottom-6
             left-1/2
             z-50
             flex
+            justify-evenly
+            w-3/4
             -translate-x-1/2
             items-center
             gap-6
@@ -80,6 +83,14 @@ export default function BottomNav({
             backdrop-blur
           `
           : `
+            absolute
+            bg-background
+            border
+            border-primary
+            right-4
+            px-5
+            py-2
+            rounded-xl
             flex
             items-center
             gap-8
@@ -105,7 +116,7 @@ export default function BottomNav({
             "
           >
             <Icon
-              className={`h-5 w-5 ${
+              className={`h-5.5 w-5.5 ${
                 isActive
                   ? "text-violet-500"
                   : "text-muted-foreground"
@@ -114,6 +125,7 @@ export default function BottomNav({
           </button>
         );
       })}
+      <AnimatedThemeToggler className="border border-primary p-2 rounded-full" />
     </nav>
   );
 }

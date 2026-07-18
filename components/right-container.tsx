@@ -50,6 +50,7 @@ export default function RightContainer({
         md:border
         md:border-primary
         md:bg-background
+        relative
       "
     >
       {/* Desktop Header */}
@@ -59,7 +60,6 @@ export default function RightContainer({
           shrink-0
           items-center
           justify-between
-          border-b
           border-border
           px-6
           py-4
@@ -76,6 +76,7 @@ export default function RightContainer({
             setActiveSection={setActiveSection}
           />
         )}
+
       </div>
 
       {/* Content */}
