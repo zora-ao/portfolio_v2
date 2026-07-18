@@ -1,68 +1,119 @@
-import { Coffee, Mail, ShieldCheck, User } from "lucide-react";
-import { AnimatedThemeToggler } from "./ui/animated-theme-toggler";
+"use client";
 
-type Section =
-  | "about"
-  | "projects"
-  | "certificates"
-  | "contact";
+import {
+  User,
+  Home,
+  Briefcase,
+  Award,
+  Mail,
+} from "lucide-react";
+
+import { Section } from "@/types/navigation";
 
 interface BottomNavProps {
   activeSection: Section;
-  setActiveSection: (section: Section) => void;
+  setActiveSection: React.Dispatch<
+    React.SetStateAction<Section>
+  >;
+  mobile?: boolean;
 }
+
+const navItems = [
+  {
+    id: "profile" as const,
+    icon: User,
+    label: "Profile",
+  },
+  {
+    id: "about" as const,
+    icon: Home,
+    label: "About",
+  },
+  {
+    id: "projects" as const,
+    icon: Briefcase,
+    label: "Projects",
+  },
+  {
+    id: "certificates" as const,
+    icon: Award,
+    label: "Certificates",
+  },
+  {
+    id: "contact" as const,
+    icon: Mail,
+    label: "Contact",
+  },
+];
 
 export default function BottomNav({
   activeSection,
   setActiveSection,
+  mobile = false,
 }: BottomNavProps) {
+  const items = mobile
+    ? navItems
+    : navItems.filter(
+        (item) => item.id !== "profile"
+      );
+
   return (
-    <div className="flex justify-end">
-      <nav className="flex items-center gap-12 rounded-2xl border border-primary bg-background px-8 py-2">
+    <nav
+      className={
+        mobile
+          ? `
+            fixed
+            bottom-4
+            left-1/2
+            z-50
+            flex
+            -translate-x-1/2
+            items-center
+            gap-6
+            rounded-2xl
+            border
+            border-border
+            bg-card/90
+            px-5
+            py-3
+            shadow-lg
+            backdrop-blur
+          `
+          : `
+            flex
+            items-center
+            gap-8
+          `
+      }
+    >
+      {items.map((item) => {
+        const Icon = item.icon;
 
-        <button onClick={() => setActiveSection("about")}>
-          <User
-            className={`h-5 w-5 ${
-              activeSection === "about"
-                ? "text-violet-400"
-                : "text-foreground"
-            }`}
-          />
-        </button>
+        const isActive =
+          activeSection === item.id;
 
-        <button onClick={() => setActiveSection("projects")}>
-          <Coffee
-            className={`h-5 w-5 ${
-              activeSection === "projects"
-                ? "text-violet-400"
-                : "text-foreground"
-            }`}
-          />
-        </button>
-
-        <button onClick={() => setActiveSection("certificates")}>
-          <ShieldCheck
-            className={`h-5 w-5 ${
-              activeSection === "certificates"
-                ? "text-violet-400"
-                : "text-foreground"
-            }`}
-          />
-        </button>
-
-        <button onClick={() => setActiveSection("contact")}>
-          <Mail
-            className={`h-5 w-5 ${
-              activeSection === "contact"
-                ? "text-violet-400"
-                : "text-foreground"
-            }`}
-          />
-        </button>
-
-        <AnimatedThemeToggler className="border border-primary rounded-lg p-2" />
-
-      </nav>
-    </div>
+        return (
+          <button
+            key={item.id}
+            onClick={() =>
+              setActiveSection(item.id)
+            }
+            className="
+              transition-all
+              duration-200
+              hover:scale-110
+            "
+          >
+            <Icon
+              className={`h-5 w-5 ${
+                isActive
+                  ? "text-violet-500"
+                  : "text-muted-foreground"
+              }`}
+            />
+          </button>
+        );
+      })}
+    </nav>
   );
 }
