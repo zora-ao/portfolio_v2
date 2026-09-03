@@ -16,7 +16,7 @@ export default function ContactSection() {
   return (
     <div className="space-y-6 md:p-0 pb-24">
       {/* Header */}
-      <div>
+      <div className="pt-20">
         <p className="mt-4 max-w-full border border-primary text-foreground bg-background p-4 rounded-xl">
           Interested in working together, discussing a project,
           or just saying hello? Feel free to reach out.

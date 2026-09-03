@@ -47,9 +47,6 @@ export default function RightContainer({
         min-h-0
         flex-col
         rounded-3xl
-        md:border
-        md:border-primary
-        md:bg-background
         relative
       "
     >
@@ -61,14 +58,10 @@ export default function RightContainer({
           items-center
           justify-between
           border-border
-          px-6
-          py-4
+        
           lg:flex
         "
       >
-        <h2 className="text-xl font-semibold capitalize text-foreground">
-          {activeSection}
-        </h2>
 
         {setActiveSection && (
           <BottomNav

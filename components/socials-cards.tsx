@@ -8,8 +8,8 @@ import {
 export default function SocialsCard() {
   return (
     <Card className="border border-primary bg-background">
-      <CardContent className="px-6">
-        <div className="mb-4 text-center">
+      <CardContent className="flex items-center justify-around">
+        <div className="text-justify">
           <h3 className="text-lg font-semibold text-foreground">
             Connect With Me
           </h3>

@@ -1,6 +1,5 @@
 import Image from "next/image";
 import { Card, CardContent } from "./ui/card";
-import InfoBadges from "./info-badges";
 import { Download, Mail } from "lucide-react";
 import { Button } from "./ui/button";
 import PixelTransition from "./ui/PixelTransition";
@@ -9,7 +8,7 @@ export default function ProfileCard() {
   return (
     <div className="flex flex-col gap-4">
       {/* Outer Profile Header */}
-      <div className="flex gap-4 items-center pt-4 md:py-0">
+      <div className="flex justify-center gap-4 items-center pt-4 md:py-0">
         {/* Avatar Wrapper */}
         <div className="p-[1px] rounded-xl border border-border bg-muted/50 shrink-0">
           <div className="relative h-24 w-24 overflow-hidden rounded-[11px] bg-card">
@@ -61,15 +60,6 @@ export default function ProfileCard() {
             — Haruki Murakami
           </p>
         </div>
-      </div>
-
-      {/* Card Container for Inner Content */}
-      <div>
-        <Card className="rounded-2xl border-border bg-card text-card-foreground shadow-2xl overflow-hidden">
-          <CardContent className="px-6">
-            <InfoBadges />
-          </CardContent>
-        </Card>
       </div>
 
       {/* Action Buttons Below Container */}

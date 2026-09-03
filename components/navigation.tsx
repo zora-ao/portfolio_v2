@@ -1,5 +1,7 @@
 "use client";
 
+import { useEffect, useState } from "react";
+
 import {
   User,
   PersonStanding,
@@ -52,50 +54,210 @@ export default function BottomNav({
   setActiveSection,
   mobile = false,
 }: BottomNavProps) {
+  const [isScrolling, setIsScrolling] =
+    useState(false);
+
+  const [isScrollingUp, setIsScrollingUp] =
+    useState(false);
+
+  useEffect(() => {
+    let lastScrollPosition = 0;
+
+    let scrollTimeout: ReturnType<
+      typeof setTimeout
+    >;
+
+    const handleScroll = (event: Event) => {
+      const target = event.target;
+
+      let currentScrollPosition = 0;
+
+      /*
+       * Check if the window/document is scrolling
+       */
+      if (target === document) {
+        currentScrollPosition = window.scrollY;
+      }
+
+      /*
+       * Check if an inner container is scrolling
+       */
+      else if (target instanceof HTMLElement) {
+        currentScrollPosition = target.scrollTop;
+      }
+
+      /*
+       * Ignore anything else
+       */
+      else {
+        return;
+      }
+
+      /*
+       * Ignore very small movements
+       */
+      if (
+        Math.abs(
+          currentScrollPosition -
+            lastScrollPosition
+        ) < 5
+      ) {
+        return;
+      }
+
+      /*
+       * Detect scroll direction
+       */
+      if (
+        currentScrollPosition >
+        lastScrollPosition
+      ) {
+        // Scrolling DOWN
+        setIsScrollingUp(false);
+      } else {
+        // Scrolling UP
+        setIsScrollingUp(true);
+      }
+
+      /*
+       * Save current position
+       */
+      lastScrollPosition =
+        currentScrollPosition;
+
+      /*
+       * User is currently scrolling
+       */
+      setIsScrolling(true);
+
+      /*
+       * Reset the timer
+       */
+      clearTimeout(scrollTimeout);
+
+      /*
+       * Show navigation after scrolling stops
+       */
+      scrollTimeout = setTimeout(() => {
+        setIsScrolling(false);
+      }, 500);
+    };
+
+    /*
+     * Capture scroll events from:
+     *
+     * - window
+     * - document
+     * - nested scrollable containers
+     */
+    document.addEventListener(
+      "scroll",
+      handleScroll,
+      true
+    );
+
+    return () => {
+      document.removeEventListener(
+        "scroll",
+        handleScroll,
+        true
+      );
+
+      clearTimeout(scrollTimeout);
+    };
+  }, []);
+
+  /*
+   * Desktop doesn't need the Profile button
+   */
   const items = mobile
     ? navItems
     : navItems.filter(
         (item) => item.id !== "profile"
       );
 
+  /*
+   * Navigation animation
+   */
+  let animationClass = "";
+
+  if (mobile) {
+    /*
+     * MOBILE
+     *
+     * Scrolling:
+     * hide + move down
+     *
+     * Stopped:
+     * show + move back
+     */
+    animationClass = isScrolling
+      ? "opacity-0 pointer-events-none translate-y-4"
+      : "opacity-100 pointer-events-auto translate-y-0";
+  } else {
+    /*
+     * DESKTOP
+     *
+     * Scrolling DOWN:
+     * move UP and hide
+     *
+     * Scrolling UP:
+     * move DOWN and show
+     */
+    animationClass =
+      isScrolling && !isScrollingUp
+        ? "opacity-0 pointer-events-none -translate-y-20"
+        : "opacity-100 pointer-events-auto translate-y-0";
+  }
+
   return (
     <nav
-      className={
-        mobile
-          ? `
-            fixed
-            bottom-6
-            left-1/2
-            z-50
-            flex
-            justify-evenly
-            w-3/4
-            -translate-x-1/2
-            items-center
-            gap-6
-            rounded-2xl
-            border
-            border-border
-            bg-card/90
-            px-5
-            py-3
-            shadow-lg
-            backdrop-blur
-          `
-          : `
-            absolute
-            bg-background
-            border
-            border-primary
-            right-4
-            px-5
-            py-2
-            rounded-xl
-            flex
-            items-center
-            gap-8
-          `
-      }
+      className={`
+        z-50
+
+        transition-all
+        duration-300
+        ease-in-out
+
+        ${animationClass}
+
+        ${
+          mobile
+            ? `
+              fixed
+              bottom-6
+              left-1/2
+              flex
+              w-3/4
+              -translate-x-1/2
+              items-center
+              justify-evenly
+              gap-6
+              rounded-2xl
+              border
+              border-border
+              bg-card/90
+              px-5
+              py-3
+              shadow-lg
+              backdrop-blur
+            `
+            : `
+              absolute
+              top-2
+              right-6
+              flex
+              items-center
+              gap-8
+              rounded-xl
+              border
+              border-primary
+              bg-background
+              px-5
+              py-2
+            `
+        }
+      `}
     >
       {items.map((item) => {
         const Icon = item.icon;
@@ -109,6 +271,7 @@ export default function BottomNav({
             onClick={() =>
               setActiveSection(item.id)
             }
+            aria-label={item.label}
             className="
               transition-all
               duration-200
@@ -116,16 +279,28 @@ export default function BottomNav({
             "
           >
             <Icon
-              className={`h-5.5 w-5.5 ${
-                isActive
-                  ? "text-violet-500"
-                  : "text-muted-foreground"
-              }`}
+              className={`
+                h-5.5
+                w-5.5
+                ${
+                  isActive
+                    ? "text-violet-500"
+                    : "text-muted-foreground"
+                }
+              `}
             />
           </button>
         );
       })}
-      <AnimatedThemeToggler className="border border-primary p-2 rounded-full" />
+
+      <AnimatedThemeToggler
+        className="
+          rounded-full
+          border
+          border-primary
+          p-2
+        "
+      />
     </nav>
   );
 }

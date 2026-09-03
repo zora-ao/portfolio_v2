@@ -1,141 +1,102 @@
 "use client";
 
 import Image from "next/image";
-import { Link2 } from "lucide-react";
+import Link from "next/link";
+
+import { ArrowRight } from "lucide-react";
 
 import { certificates } from "@/data/certificates";
-
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-} from "@/components/ui/dialog";
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 
-import { useState } from "react";
-
 export default function CertificatesSection() {
-  const [selectedCertificate, setSelectedCertificate] =
-    useState<(typeof certificates)[number] | null>(null);
-
   return (
-    <>
-      <div className="space-y-6 md:my-4 md:p-0 pb-24 pt-10">
+    <div className="space-y-8 py-6">
+      {/* Section Header */}
+      <div className="space-y-1">
+        <h1 className="text-2xl font-semibold">
+          Certificates
+        </h1>
 
-        <div className="grid gap-6 md:grid-cols-2">
-          {certificates.map((certificate) => (
-            <Card
-              key={certificate.name}
-              onClick={() =>
-                setSelectedCertificate(certificate)
-              }
-              className="
-                cursor-pointer
-                border
-                border-primary
-                bg-card
-                transition-all
-              "
-            >
-              <CardContent className="px-4 text-center">
-                <div className="space-y-4">
-                  <div className="overflow-hidden border border-border">
-                    <Image
-                      src={certificate.image}
-                      alt={certificate.name}
-                      width={600}
-                      height={400}
-                      className="
-                        w-full
-                        object-cover
-                        transition-transform
-                        duration-300
-                      "
-                    />
-                  </div>
-
-                  <div>
-                    <h3 className="font-semibold text-foreground">
-                      {certificate.name}
-                    </h3>
-
-                    <p className="text-sm text-muted-foreground">
-                      {certificate.issuer}
-                    </p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
+        <p className="text-sm text-muted-foreground">
+          Certificates and achievements I have earned while
+          learning and developing my technical skills.
+        </p>
       </div>
 
-      <Dialog
-        open={!!selectedCertificate}
-        onOpenChange={() =>
-          setSelectedCertificate(null)
-        }
-      >
-        <DialogContent className="max-w-4xl">
-          {selectedCertificate && (
-            <>
-              <DialogHeader>
-                <DialogTitle className="flex w-3/4 text-center mx-auto">
-                  {selectedCertificate.name}
-                </DialogTitle>
-              </DialogHeader>
-
-              <div className="space-y-6">
+      {/* Certificates */}
+      <div className="grid gap-6 md:grid-cols-2">
+        {certificates.map((certificate) => (
+          <Card
+            key={certificate.name}
+            className="
+              overflow-hidden
+              border
+              border-primary
+              bg-background/50
+              transition-all
+              duration-300
+              hover:-translate-y-1
+              hover:shadow-lg
+              backdrop-blur-sm
+              py-0
+            "
+          >
+            <CardContent className="p-0">
+              {/* Certificate Image */}
+              <div className="overflow-hidden border-b border-border">
                 <Image
-                  src={selectedCertificate.image}
-                  alt={selectedCertificate.name}
-                  width={1200}
-                  height={800}
+                  src={certificate.image}
+                  alt={certificate.name}
+                  width={600}
+                  height={400}
                   className="
                     w-full
-                    border
-                    border-border
+                    object-cover
+                    transition-transform
+                    duration-500
                   "
                 />
+              </div>
 
-                <div className="space-y-2">
-                  <p>
-                    <span className="font-semibold">
-                      Issuer:
-                    </span>{" "}
-                    {selectedCertificate.issuer}
+              {/* Certificate Information */}
+              <div className="space-y-4 p-5">
+                <div className="space-y-1">
+                  <h2 className="text-lg font-semibold text-foreground">
+                    {certificate.name}
+                  </h2>
+
+                  <p className="text-sm text-muted-foreground">
+                    {certificate.issuer}
                   </p>
 
-                  <p>
-                    <span className="font-semibold">
-                      Date Earned:
-                    </span>{" "}
-                    {selectedCertificate.date}
+                  <p className="text-sm text-muted-foreground">
+                    Earned: {certificate.date}
                   </p>
                 </div>
 
-                <p className="text-muted-foreground">
-                  {selectedCertificate.description}
+                <p className="text-sm leading-6 text-muted-foreground">
+                  {certificate.description}
                 </p>
 
-                <a
-                  href={selectedCertificate.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                {/* View Certificate */}
+                <Link
+                  href={`/certificates/${certificate.slug}`}
                 >
-                  <Button className="bg-background text-foreground border-primary">
-                    <Link2 className="mr-2 h-4 w-4" />
-                    View Credential
+                  <Button
+                    variant="outline"
+                    className="rounded-lg border-primary"
+                  >
+                    View Certificate
+                    <ArrowRight className="ml-2 h-4 w-4" />
                   </Button>
-                </a>
+                </Link>
               </div>
-            </>
-          )}
-        </DialogContent>
-      </Dialog>
-    </>
+            </CardContent>
+          </Card>
+        ))}
+      </div>
+    </div>
   );
 }

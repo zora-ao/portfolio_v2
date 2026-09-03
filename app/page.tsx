@@ -9,7 +9,6 @@ import RightContainer from "@/components/right-container";
 import BottomNav from "@/components/navigation";
 
 import { Section } from "@/types/navigation";
-import { cn } from "@/lib/utils";
 import { DotPattern } from "@/components/ui/dot-pattern";
 
 export default function Home() {
@@ -17,11 +16,24 @@ export default function Home() {
     useState<Section>("profile");
 
   return (
-    <main className="h-screen overflow-hidden bg-[#09090b] md:px-4 md:py-4 lg:px-8">
+    <main className="relative h-screen overflow-hidden bg-background text-foreground md:px-4 lg:px-8">
+      {/* Background */}
+      <DotPattern
+        className="
+          absolute
+          inset-0
+          z-0
+          h-full
+          w-full
+          fill-foreground/10
+          [mask-image:linear-gradient(to_bottom_right,white,transparent,transparent)]
+        "
+      />
+
       {/* ================= MOBILE ================= */}
-      <div className="h-full lg:hidden">
+      <div className="relative z-10 h-full lg:hidden">
         {activeSection === "profile" ? (
-          <div className="h-full overflow-y-auto mb-24 scrollbar-hide px-4">
+          <div className="mb-24 h-full overflow-y-auto px-4 scrollbar-hide">
             <div className="space-y-4">
               <ProfileCard />
               <SkillsCard />
@@ -46,12 +58,12 @@ export default function Home() {
       </div>
 
       {/* ================= DESKTOP ================= */}
-      <div className="hidden h-full lg:block">
+      <div className="relative z-10 hidden h-full lg:block">
         <div className="mx-auto h-full max-w-7xl">
           <div className="grid h-full gap-8 lg:grid-cols-[430px_1fr]">
             {/* Left Side */}
             <aside className="h-full overflow-y-auto pr-2 scrollbar-hide">
-              <div className="space-y-4">
+              <div className="space-y-4 py-4">
                 <ProfileCard />
                 <SkillsCard />
                 <SocialsCard />
