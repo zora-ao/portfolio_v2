@@ -48,7 +48,7 @@ export default function ContactSection() {
         </a>
 
         <a
-          href="https://github.com/yourusername"
+          href="https://github.com/zora-ao"
           target="_blank"
           rel="noopener noreferrer"
           className="block"
@@ -71,7 +71,7 @@ export default function ContactSection() {
         </a>
 
         <a
-          href="https://linkedin.com/in/yourusername"
+          href="https://linkedin.com/in/carljasperramos"
           target="_blank"
           rel="noopener noreferrer"
           className="block"
@@ -85,7 +85,7 @@ export default function ContactSection() {
                   LinkedIn
                 </p>
 
-                <p className="text-sm texforeground">
+                <p className="text-sm text-foreground">
                   Let's Connect
                 </p>
               </div>

@@ -9,17 +9,19 @@ import RightContainer from "@/components/right-container";
 import BottomNav from "@/components/navigation";
 
 import { Section } from "@/types/navigation";
+import { cn } from "@/lib/utils";
+import { DotPattern } from "@/components/ui/dot-pattern";
 
 export default function Home() {
   const [activeSection, setActiveSection] =
     useState<Section>("profile");
 
   return (
-    <main className="h-screen overflow-hidden bg-background md:px-4 md:py-4 lg:px-8">
+    <main className="h-screen overflow-hidden bg-[#09090b] md:px-4 md:py-4 lg:px-8">
       {/* ================= MOBILE ================= */}
       <div className="h-full lg:hidden">
         {activeSection === "profile" ? (
-          <div className="h-full overflow-y-auto pb-24 scrollbar-hide px-4">
+          <div className="h-full overflow-y-auto mb-24 scrollbar-hide px-4">
             <div className="space-y-4">
               <ProfileCard />
               <SkillsCard />
