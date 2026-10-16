@@ -54,17 +54,17 @@ export default function ContactForm() {
   return (
     <form
       onSubmit={form.handleSubmit(onSubmit)}
-      className="space-y-4 md:w-2/3 w-full text-center border border-strong px-3 py-5 rounded-2xl"
+      className="space-y-4 md:w-2/3 w-full text-center border border-border bg-card px-5 py-6 rounded-2xl"
     >
       <div className="space-y-1">
         <Input
           placeholder="Your Name"
           {...form.register("name")}
-          className="border-strong bg-background text-foreground"
+          className="border-border bg-background text-foreground"
         />
 
         {form.formState.errors.name && (
-          <p className="text-sm text-red-500">
+          <p className="text-sm text-destructive">
             {form.formState.errors.name.message}
           </p>
         )}
@@ -75,11 +75,11 @@ export default function ContactForm() {
           type="email"
           placeholder="Your Email"
           {...form.register("email")}
-          className="border-strong bg-background text-foreground"
+          className="border-border bg-background text-foreground"
         />
 
         {form.formState.errors.email && (
-          <p className="text-sm text-red-500">
+          <p className="text-sm text-destructive">
             {form.formState.errors.email.message}
           </p>
         )}
@@ -90,11 +90,11 @@ export default function ContactForm() {
           rows={6}
           placeholder="Your Message..."
           {...form.register("message")}
-          className="border-strong bg-background text-foreground"
+          className="border-border bg-background text-foreground"
         />
 
         {form.formState.errors.message && (
-          <p className="text-sm text-red-500">
+          <p className="text-sm text-destructive">
             {form.formState.errors.message.message}
           </p>
         )}
