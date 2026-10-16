@@ -72,7 +72,7 @@ export default function AboutSection() {
           </p>
         </div>
 
-        <Card className="border border-primary bg-background">
+        <Card className="border border-strong bg-background">
           <CardContent className="px-6">
             <div className="space-y-4">
               <p className="text-sm">
@@ -108,9 +108,9 @@ export default function AboutSection() {
         className="grid gap-4 md:grid-cols-3"
       >
         <motion.div whileHover={{ y: -5 }}>
-          <Card className="h-full border border-primary bg-background transition-all">
+          <Card className="h-full border border-strong bg-background transition-all">
             <CardContent className="p-5">
-              <Code2 className="mb-3 h-5 w-5 text-violet-400" />
+              <Code2 className="mb-3 h-5 w-5 text-brand" />
 
               <h2 className="text-3xl font-bold text-foreground">
                 4+
@@ -124,9 +124,9 @@ export default function AboutSection() {
         </motion.div>
 
         <motion.div whileHover={{ y: -5 }}>
-          <Card className="h-full border border-primary bg-background transition-all">
+          <Card className="h-full border border-strong bg-background transition-all">
             <CardContent className="p-5">
-              <FolderGit2 className="mb-3 h-5 w-5 text-violet-400" />
+              <FolderGit2 className="mb-3 h-5 w-5 text-brand" />
 
               <h2 className="text-3xl font-bold text-foreground">
                 5+
@@ -140,9 +140,9 @@ export default function AboutSection() {
         </motion.div>
 
         <motion.div whileHover={{ y: -5 }}>
-          <Card className="h-full border border-primary bg-background transition-all">
+          <Card className="h-full border border-strong bg-background transition-all">
             <CardContent className="p-5">
-              <GraduationCap className="mb-3 h-5 w-5 text-violet-400" />
+              <GraduationCap className="mb-3 h-5 w-5 text-brand" />
 
               <h2 className="text-3xl font-bold text-foreground">
                 2025

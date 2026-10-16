@@ -1,4 +1,10 @@
+"use client";
+
+import { motion } from "framer-motion";
+
 import { Card, CardContent } from "./ui/card";
+
+import { staggerChild, staggerContainer } from "@/lib/animations";
 
 import {
   SiReact,
@@ -30,7 +36,7 @@ const skills = [
 
 export default function SkillsCard() {
   return (
-    <Card className="rounded-2xl shadow-2xl border-border bg-card text-card-foreground overflow-hidden">
+    <Card className="border border-strong bg-background">
       <CardContent className="px-6">
         {/* Header Title & Description */}
         <div className="mb-6 text-center">
@@ -44,24 +50,28 @@ export default function SkillsCard() {
         </div>
 
         {/* Centered Badges */}
-        <div className="flex flex-wrap gap-2.5 justify-center items-center">
+        <motion.div
+          variants={staggerContainer}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-10% 0px" }}
+          className="flex flex-wrap gap-2.5 justify-center items-center"
+        >
           {skills.map((skill) => {
             const Icon = skill.icon;
 
             return (
-              <div
+              <motion.div
                 key={skill.name}
+                variants={staggerChild}
                 className="
                   flex items-center gap-2
                   rounded-full
-                  border border-border
-                  bg-muted/50
+                  border border-strong
                   px-3.5 py-1.5
                   text-xs font-medium text-foreground
-                  shadow-xs backdrop-blur-xs
-                  transition-all duration-200
-                  hover:border-ring hover:bg-accent hover:text-accent-foreground
-                  hover:-translate-y-0.5
+                  transition-all
+                  hover:border-brand hover:bg-brand-muted
                 "
               >
                 <Icon
@@ -69,10 +79,10 @@ export default function SkillsCard() {
                   className="text-foreground shrink-0"
                 />
                 <span>{skill.name}</span>
-              </div>
+              </motion.div>
             );
           })}
-        </div>
+        </motion.div>
       </CardContent>
     </Card>
   );

@@ -33,18 +33,18 @@ const PixelTransition: React.FC<PixelTransitionProps> = ({
 
   const [isActive, setIsActive] = useState<boolean>(false);
   
-  // 1. Start with a safe default state for server-side rendering
-  const [isTouchDevice, setIsTouchDevice] = useState<boolean>(false);
+  // Safe default on the server, detected immediately on the client.
+  // This only switches event handlers (never markup), so it cannot
+  // cause a hydration mismatch.
+  const [isTouchDevice] = useState<boolean>(() => {
+    if (typeof window === "undefined") return false;
 
-  // 2. Safely detect the touch device capability once mounted in the browser
-  useEffect(() => {
-    const hasTouch =
-      'ontouchstart' in window || 
-      (navigator && navigator.maxTouchPoints > 0) || 
-      window.matchMedia('(pointer: coarse)').matches;
-    
-    setIsTouchDevice(hasTouch);
-  }, []);
+    return (
+      'ontouchstart' in window ||
+      (typeof navigator !== "undefined" && navigator.maxTouchPoints > 0) ||
+      window.matchMedia('(pointer: coarse)').matches
+    );
+  });
 
   useEffect(() => {
     const pixelGridEl = pixelGridRef.current;

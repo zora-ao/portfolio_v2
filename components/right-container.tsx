@@ -1,5 +1,8 @@
 "use client";
 
+import { useEffect, useRef } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+
 import BottomNav from "./navigation";
 
 import AboutSection from "./sections/about-section";
@@ -20,6 +23,16 @@ export default function RightContainer({
   activeSection = "about",
   setActiveSection,
 }: RightContainerProps) {
+  const scrollRef = useRef<HTMLDivElement>(null);
+
+  /*
+   * Each section gets a fresh scroll position —
+   * keeping the old offset mid-list feels broken.
+   */
+  useEffect(() => {
+    scrollRef.current?.scrollTo({ top: 0 });
+  }, [activeSection]);
+
   const renderContent = () => {
     switch (activeSection) {
       case "about":
@@ -46,7 +59,7 @@ export default function RightContainer({
         h-full
         min-h-0
         flex-col
-        rounded-3xl
+        rounded-2xl
         relative
       "
     >
@@ -73,19 +86,26 @@ export default function RightContainer({
       </div>
 
       {/* Content */}
-      <div
-        key={activeSection}
-        className="
-          min-h-0
-          flex-1
-          overflow-y-auto
-          scrollbar-hide
-          px-6
-          py-0
-        "
-      >
-        {renderContent()}
-      </div>
+      <AnimatePresence mode="wait" initial={false}>
+        <motion.div
+          key={activeSection}
+          ref={scrollRef}
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -8 }}
+          transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
+          className="
+            min-h-0
+            flex-1
+            overflow-y-auto
+            scrollbar-hide
+            px-6
+            py-0
+          "
+        >
+          {renderContent()}
+        </motion.div>
+      </AnimatePresence>
     </section>
   );
 }

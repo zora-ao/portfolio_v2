@@ -1,14 +1,8 @@
 "use client";
 
-import {
-  Mail,
-  Send,
-} from "lucide-react";
+import { Mail } from "lucide-react";
 
-import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
 import { SiGithub, SiLinkerd } from "@icons-pack/react-simple-icons";
 import ContactForm from "../contact-form";
 
@@ -17,7 +11,7 @@ export default function ContactSection() {
     <div className="space-y-6 md:p-0 pb-24">
       {/* Header */}
       <div className="pt-20">
-        <p className="mt-4 max-w-full border border-primary text-foreground bg-background p-4 rounded-xl">
+        <p className="mt-4 max-w-full border border-strong text-foreground bg-background p-4 rounded-2xl">
           Interested in working together, discussing a project,
           or just saying hello? Feel free to reach out.
         </p>
@@ -27,10 +21,10 @@ export default function ContactSection() {
       {/* Contact Cards */}
       <div className="grid gap-2 md:grid-cols-1 grid-cols-3">
         <a
-          href="mailto:youremail@example.com"
+          href="mailto:carljasperramos97@gmail.com"
           className="block"
         >
-          <Card className="border border-primary bg-background transition-all hover:border-violet-500">
+          <Card className="border border-strong bg-background transition-all hover:border-brand">
             <CardContent className="flex flex-col md:flex-row md:text-left text-center items-center gap-4 md:px-5">
               <Mail className="h-5 w-5 text-foreground" />
 
@@ -53,7 +47,7 @@ export default function ContactSection() {
           rel="noopener noreferrer"
           className="block"
         >
-          <Card className="border-primary border bg-background transition-all hover:border-violet-500">
+          <Card className="border-strong border bg-background transition-all hover:border-brand">
             <CardContent className="flex flex-col md:flex-row md:text-left text-center items-center gap-4 md:px-5">
               <SiGithub className="h-5 w-5 text-foreground" />
 
@@ -76,7 +70,7 @@ export default function ContactSection() {
           rel="noopener noreferrer"
           className="block"
         >
-          <Card className="border-primary border bg-background transition-all hover:border-violet-500">
+          <Card className="border-strong border bg-background transition-all hover:border-brand">
             <CardContent className="flex flex-col md:flex-row md:text-left text-center items-center gap-4 md:px-5">
               <SiLinkerd className="h-5 w-5 text-foreground" />
 
@@ -86,7 +80,7 @@ export default function ContactSection() {
                 </p>
 
                 <p className="text-sm text-foreground">
-                  Let's Connect
+                  Let&apos;s Connect
                 </p>
               </div>
             </CardContent>

@@ -36,7 +36,7 @@ export default function ImagePreviewDialog({
             alt="Preview"
             width={1600}
             height={900}
-            className="w-full rounded-xl object-contain"
+            className="w-full rounded-2xl object-contain"
           />
         )}
       </DialogContent>

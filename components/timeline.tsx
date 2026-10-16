@@ -22,16 +22,17 @@ export default function Timeline({
           key={index}
           initial={{
             opacity: 0,
-            x: -20,
+            y: 16,
           }}
           whileInView={{
             opacity: 1,
-            x: 0,
+            y: 0,
           }}
-          viewport={{ once: true }}
+          viewport={{ once: true, margin: "-10% 0px" }}
           transition={{
-            duration: 0.4,
-            delay: index * 0.15,
+            duration: 0.6,
+            delay: index * 0.08,
+            ease: [0.22, 1, 0.36, 1],
           }}
           className="flex gap-5"
         >
@@ -40,13 +41,14 @@ export default function Timeline({
             <motion.div
               initial={{ scale: 0 }}
               whileInView={{ scale: 1 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, margin: "-10% 0px" }}
               transition={{
                 type: "spring",
-                stiffness: 250,
-                damping: 15,
+                stiffness: 260,
+                damping: 20,
+                delay: index * 0.08,
               }}
-              className="z-10 h-4 w-4 rounded-full bg-violet-500"
+              className="z-10 h-4 w-4 rounded-full bg-brand"
             />
 
             {index !== items.length - 1 && (
@@ -55,23 +57,25 @@ export default function Timeline({
 
                 <motion.div
                   initial={{
-                    height: 0,
+                    scaleY: 0,
                   }}
                   whileInView={{
-                    height: "100%",
+                    scaleY: 1,
                   }}
-                  viewport={{ once: true }}
+                  viewport={{ once: true, margin: "-10% 0px" }}
                   transition={{
-                    duration: 0.8,
-                    ease: "easeOut",
+                    duration: 0.9,
+                    delay: index * 0.08 + 0.1,
+                    ease: [0.22, 1, 0.36, 1],
                   }}
-                  className="absolute top-4 w-[2px] bg-violet-500"
+                  style={{ transformOrigin: "top" }}
+                  className="absolute top-4 h-full w-[2px] origin-top bg-brand"
                 />
               </>
             )}
           </div>
 
-          {/* Content */}
+          {/* Content (rides the row entrance — one moving layer) */}
           <div className="pb-10">
             <p className="font-semibold text-foreground">
               {item.year}

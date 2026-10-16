@@ -7,7 +7,7 @@ import {
 
 export default function SocialsCard() {
   return (
-    <Card className="border border-primary bg-background">
+    <Card className="border border-strong bg-background">
       <CardContent className="flex items-center justify-around">
         <div className="text-justify">
           <h3 className="text-lg font-semibold text-foreground">
@@ -21,9 +21,9 @@ export default function SocialsCard() {
 
         <div className="flex justify-center gap-4">
           <a
-            href="https://github.com/yourusername"
+            href="https://github.com/zora-ao"
             target="_blank"
-            className="rounded-full border border-primary p-2 transition-all hover:border-violet-500 hover:bg-zinc-800"
+            className="rounded-full border border-strong p-2 transition-all hover:border-brand hover:bg-brand-muted"
           >
             <SiGithub className="h-4 w-4 text-foreground" />
           </a>
@@ -31,7 +31,7 @@ export default function SocialsCard() {
           <a
             href="https://instagram.com/yourusername"
             target="_blank"
-            className="rounded-full border border-primary p-2 transition-all hover:border-violet-500 hover:bg-zinc-800"
+            className="rounded-full border border-strong p-2 transition-all hover:border-brand hover:bg-brand-muted"
           >
             <SiInstagram className="h-4 w-4 text-foreground" />
           </a>
@@ -39,7 +39,7 @@ export default function SocialsCard() {
           <a
             href="https://facebook.com/yourusername"
             target="_blank"
-            className="rounded-full border border-primary p-2 transition-all hover:border-violet-500 hover:bg-zinc-800"
+            className="rounded-full border border-strong p-2 transition-all hover:border-brand hover:bg-brand-muted"
           >
             <SiFacebook className="h-4 w-4 text-foreground" />
           </a>
