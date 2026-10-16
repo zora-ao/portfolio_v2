@@ -8,6 +8,8 @@ import {
   GraduationCap,
 } from "lucide-react";
 
+import { EASE_EXPO } from "@/lib/animations";
+
 import Timeline from "../timeline";
 
 const timeline = [
@@ -37,30 +39,16 @@ const timeline = [
   },
 ];
 
-const fadeUp = {
-  hidden: {
-    opacity: 0,
-    y: 20,
-  },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.5,
-    },
-  },
-};
-
 export default function AboutSection() {
   return (
     <motion.div
-      initial="hidden"
-      animate="visible"
-      variants={fadeUp}
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5, ease: EASE_EXPO }}
       className="space-y-8 py-6"
     >
       {/* Intro */}
-      <motion.div variants={fadeUp}>
+      <div>
         <div className="mb-4">
           <h1 className="text-2xl font-semibold">
             About Me
@@ -72,7 +60,7 @@ export default function AboutSection() {
           </p>
         </div>
 
-        <Card className="border border-strong bg-background">
+        <Card>
           <CardContent className="px-6">
             <div className="space-y-4">
               <p className="text-sm">
@@ -100,15 +88,12 @@ export default function AboutSection() {
             </div>
           </CardContent>
         </Card>
-      </motion.div>
+      </div>
 
       {/* Stats */}
-      <motion.div
-        variants={fadeUp}
-        className="grid gap-4 md:grid-cols-3"
-      >
+      <div className="grid gap-4 md:grid-cols-3">
         <motion.div whileHover={{ y: -5 }}>
-          <Card className="h-full border border-strong bg-background transition-all">
+          <Card className="h-full transition-all">
             <CardContent className="p-5">
               <Code2 className="mb-3 h-5 w-5 text-brand" />
 
@@ -124,7 +109,7 @@ export default function AboutSection() {
         </motion.div>
 
         <motion.div whileHover={{ y: -5 }}>
-          <Card className="h-full border border-strong bg-background transition-all">
+          <Card className="h-full transition-all">
             <CardContent className="p-5">
               <FolderGit2 className="mb-3 h-5 w-5 text-brand" />
 
@@ -140,7 +125,7 @@ export default function AboutSection() {
         </motion.div>
 
         <motion.div whileHover={{ y: -5 }}>
-          <Card className="h-full border border-strong bg-background transition-all">
+          <Card className="h-full transition-all">
             <CardContent className="p-5">
               <GraduationCap className="mb-3 h-5 w-5 text-brand" />
 
@@ -154,12 +139,12 @@ export default function AboutSection() {
             </CardContent>
           </Card>
         </motion.div>
-      </motion.div>
+      </div>
 
       {/* Timeline */}
-      <motion.div variants={fadeUp}>
+      <div>
         <Timeline items={timeline} />
-      </motion.div>
+      </div>
     </motion.div>
   );
 }

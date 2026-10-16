@@ -248,7 +248,6 @@ export default function BottomNav({
               bg-card/90
               px-5
               py-3
-              shadow-lg
               backdrop-blur
             `
             : `
@@ -260,8 +259,8 @@ export default function BottomNav({
               gap-8
               rounded-2xl
               border
-              border-strong
-              bg-background
+              border-border
+              bg-card
               px-5
               py-2
             `
@@ -327,11 +326,14 @@ export default function BottomNav({
       <AnimatedThemeToggler
         theme={theme === "light" ? "light" : "dark"}
         onThemeChange={setTheme}
-        className="
+          className="
           rounded-full
           border
-          border-strong
+          border-border
           p-2
+          transition-colors
+          hover:border-brand
+          hover:text-brand
         "
       />
     </nav>

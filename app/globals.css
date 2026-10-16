@@ -241,12 +241,10 @@
   --sidebar-ring: oklch(0.78 0.13 200);
 }
 
-/* Card surfaces are token-driven now (no gradient override).
-   Phase 2 will normalize inline `bg-background/50` etc. to `bg-card`. */
-[data-slot="card"] {
-  border-color: var(--border);
-  box-shadow: var(--shadow-card);
-}
+/* Card surfaces are token-driven via the `variant` prop in
+   components/ui/card.tsx (elevated = bg-card + shadow-card).
+   Shadows and borders are owned there — not overridden here,
+   so cards never stack two competing shadows. */
 
 /* ============================================
    BASE

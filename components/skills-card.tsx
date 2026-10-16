@@ -36,11 +36,11 @@ const skills = [
 
 export default function SkillsCard() {
   return (
-    <Card className="border border-strong bg-background">
+    <Card>
       <CardContent className="px-6">
         {/* Header Title & Description */}
         <div className="mb-6 text-center">
-          <h3 className="text-xl font-semibold text-foreground tracking-tight">
+          <h3 className="text-lg font-semibold text-foreground tracking-tight">
             Tech Stack
           </h3>
 
@@ -67,7 +67,7 @@ export default function SkillsCard() {
                 className="
                   flex items-center gap-2
                   rounded-full
-                  border border-strong
+                  border border-border
                   px-3.5 py-1.5
                   text-xs font-medium text-foreground
                   transition-all

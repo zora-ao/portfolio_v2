@@ -101,7 +101,7 @@ export default async function CertificatePage({
             rounded-2xl
             border
             border-border
-            bg-background/50
+            bg-card
           "
         >
           <Image
@@ -151,7 +151,7 @@ export default async function CertificatePage({
                     rounded-lg
                     border
                     border-border
-                    bg-background/50
+                    bg-card
                     px-3
                     py-1.5
                     text-sm
@@ -201,10 +201,11 @@ export default async function CertificatePage({
                 rounded-2xl
                 border
                 border-border
-                bg-background/50
+                bg-card
                 p-5
                 transition-colors
-                hover:border-brand/50
+                duration-300
+                hover:border-brand
               "
             >
               <div className="space-y-2">

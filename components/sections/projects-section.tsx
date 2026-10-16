@@ -112,7 +112,7 @@ export default function ProjectsSection() {
                           rounded-lg
                           border
                           border-border
-                          bg-background/50
+                          bg-card
                           px-3
                           py-1.5
                           text-sm
@@ -153,7 +153,11 @@ export default function ProjectsSection() {
                       <Button
                         className="
                           rounded-lg
-                          bg-secondary-foreground
+                          border-transparent
+                          bg-brand
+                          text-brand-foreground
+                          hover:bg-brand-600
+                          active:scale-[0.97]
                         "
                       >
                         <ExternalLink size={16} />

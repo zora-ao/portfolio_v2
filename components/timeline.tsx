@@ -53,7 +53,7 @@ export default function Timeline({
 
             {index !== items.length - 1 && (
               <>
-                <div className="absolute top-4 h-full w-[2px] bg-background" />
+                <div className="absolute top-4 h-full w-[2px] bg-border" />
 
                 <motion.div
                   initial={{

@@ -35,15 +35,10 @@ export default function CertificatesSection() {
             <Card
               className="
               overflow-hidden
-              border
-              border-strong
-              bg-background/50
-              transition-all
-              duration-300
-              hover:-translate-y-1
-              hover:shadow-lg
-              backdrop-blur-sm
               py-0
+              transition-colors
+              duration-300
+              hover:border-brand
             "
           >
             <CardContent className="p-0">
@@ -89,7 +84,7 @@ export default function CertificatesSection() {
                 >
                   <Button
                     variant="outline"
-                    className="rounded-lg border-strong"
+                    className="rounded-lg border-border"
                   >
                     View Certificate
                     <ArrowRight className="ml-2 h-4 w-4" />
