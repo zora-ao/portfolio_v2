@@ -1,5 +1,4 @@
 import Image from "next/image";
-import { Card, CardContent } from "./ui/card";
 import { Download, Mail } from "lucide-react";
 import { Button } from "./ui/button";
 import PixelTransition from "./ui/PixelTransition";
@@ -10,14 +9,19 @@ export default function ProfileCard() {
       {/* Outer Profile Header */}
       <div className="flex justify-center gap-4 items-center pt-4 md:py-0">
         {/* Avatar Wrapper */}
-        <div className="p-[1px] rounded-xl border border-border bg-muted/50 shrink-0">
+        <div className="relative p-[1px] rounded-xl border border-border bg-muted/50 shrink-0">
+          <span
+            aria-hidden
+            className="animate-glow-in absolute -inset-2 rounded-2xl bg-brand/25 blur-xl"
+          />
           <div className="relative h-24 w-24 overflow-hidden rounded-[11px] bg-card">
             <PixelTransition
               firstContent={
-                <img
-                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQR1yHLhFxkJZV5wgstXnEs2lKGimVXrcOkSwePXt3R-7g4jNl8_4Ta4_Y&s=10"
-                  alt="default pixel transition content"
-                  style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                <Image
+                  src="/cat-avatar.jpg"
+                  alt="Cat avatar"
+                  fill
+                  className="object-cover"
                 />
               }
               secondContent={
@@ -65,7 +69,7 @@ export default function ProfileCard() {
       {/* Action Buttons Below Container */}
       <div className="flex flex-wrap gap-3 justify-center">
         <a href="mailto:carljasperramos97@gmail.com">
-          <Button className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-lg border border-border">
+          <Button className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-lg border border-border active:scale-[0.97]">
             <Mail className="mr-2 h-4 w-4" />
             Contact Me
           </Button>
@@ -78,7 +82,7 @@ export default function ProfileCard() {
         >
           <Button
             variant="outline"
-            className="border-border bg-card text-card-foreground hover:bg-accent hover:text-accent-foreground rounded-lg"
+            className="border-border bg-card text-card-foreground hover:bg-accent hover:text-accent-foreground rounded-lg active:scale-[0.97]"
           >
             <Download className="mr-2 h-4 w-4" />
             View Resume

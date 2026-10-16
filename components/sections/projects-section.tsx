@@ -2,9 +2,12 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import { motion } from "framer-motion";
 
 import { ExternalLink } from "lucide-react";
 import { SiGithub } from "@icons-pack/react-simple-icons";
+
+import { revealDelay } from "@/lib/animations";
 
 import { projects } from "@/data/projects";
 
@@ -32,9 +35,10 @@ export default function ProjectsSection() {
 
         {/* Projects */}
         <div className="space-y-10">
-          {projects.map((project) => (
-            <div
+          {projects.map((project, index) => (
+            <motion.div
               key={project.title}
+              {...revealDelay(index)}
               className="
                 flex
                 flex-col
@@ -58,7 +62,7 @@ export default function ProjectsSection() {
                   shrink-0
                   cursor-pointer
                   overflow-hidden
-                  rounded-xl
+                  rounded-2xl
                   border
                   border-border
                   bg-background
@@ -159,7 +163,7 @@ export default function ProjectsSection() {
                   )}
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>

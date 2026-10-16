@@ -1,6 +1,9 @@
 "use client";
 
 import { useState } from "react";
+import { motion } from "framer-motion";
+
+import { EASE_EXPO } from "@/lib/animations";
 
 import ProfileCard from "@/components/profile-card";
 import SkillsCard from "@/components/skills-card";
@@ -26,6 +29,7 @@ export default function Home() {
           h-full
           w-full
           fill-foreground/10
+          animate-drift
           [mask-image:linear-gradient(to_bottom_right,white,transparent,transparent)]
         "
       />
@@ -35,9 +39,24 @@ export default function Home() {
         {activeSection === "profile" ? (
           <div className="mb-24 h-full overflow-y-auto px-4 scrollbar-hide">
             <div className="space-y-4">
-              <ProfileCard />
-              <SkillsCard />
-              <SocialsCard />
+              {[
+                <ProfileCard key="profile" />,
+                <SkillsCard key="skills" />,
+                <SocialsCard key="socials" />,
+              ].map((card, index) => (
+                <motion.div
+                  key={card.key}
+                  initial={{ opacity: 0, y: 12 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{
+                    duration: 0.5,
+                    delay: 0.05 + index * 0.08,
+                    ease: EASE_EXPO,
+                  }}
+                >
+                  {card}
+                </motion.div>
+              ))}
             </div>
           </div>
         ) : (
@@ -64,9 +83,24 @@ export default function Home() {
             {/* Left Side */}
             <aside className="h-full overflow-y-auto pr-2 scrollbar-hide">
               <div className="space-y-4 py-4">
-                <ProfileCard />
-                <SkillsCard />
-                <SocialsCard />
+                {[
+                  <ProfileCard key="profile" />,
+                  <SkillsCard key="skills" />,
+                  <SocialsCard key="socials" />,
+                ].map((card, index) => (
+                  <motion.div
+                    key={card.key}
+                    initial={{ opacity: 0, y: 12 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{
+                      duration: 0.5,
+                      delay: 0.05 + index * 0.08,
+                      ease: EASE_EXPO,
+                    }}
+                  >
+                    {card}
+                  </motion.div>
+                ))}
               </div>
             </aside>
 

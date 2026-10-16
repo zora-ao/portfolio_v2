@@ -54,13 +54,13 @@ export default function ContactForm() {
   return (
     <form
       onSubmit={form.handleSubmit(onSubmit)}
-      className="space-y-4 md:w-2/3 w-full text-center border border-primary px-3 py-5 rounded-xl"
+      className="space-y-4 md:w-2/3 w-full text-center border border-strong px-3 py-5 rounded-2xl"
     >
       <div className="space-y-1">
         <Input
           placeholder="Your Name"
           {...form.register("name")}
-          className="border-primary bg-background text-foreground"
+          className="border-strong bg-background text-foreground"
         />
 
         {form.formState.errors.name && (
@@ -75,7 +75,7 @@ export default function ContactForm() {
           type="email"
           placeholder="Your Email"
           {...form.register("email")}
-          className="border-primary bg-background text-foreground"
+          className="border-strong bg-background text-foreground"
         />
 
         {form.formState.errors.email && (
@@ -90,7 +90,7 @@ export default function ContactForm() {
           rows={6}
           placeholder="Your Message..."
           {...form.register("message")}
-          className="border-primary bg-background text-foreground"
+          className="border-strong bg-background text-foreground"
         />
 
         {form.formState.errors.message && (
@@ -103,7 +103,7 @@ export default function ContactForm() {
       <Button
         type="submit"
         disabled={isPending}
-        className="bg-violet-600 hover:bg-viprimary text-foreground w-full"
+        className="bg-brand text-brand-foreground hover:bg-brand-600 w-full active:scale-[0.98]"
       >
         <Send className="mr-2 h-4 w-4" />
 

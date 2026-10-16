@@ -24,8 +24,7 @@ export const projects: Project[] = [
       { name: "Tailwind", icon: SiTailwindcss },
     ],
 
-    github: "#",
-    live: "#",
+    github: "https://github.com/zora-ao/crop-track",
   },
 
   {
@@ -42,8 +41,7 @@ export const projects: Project[] = [
       { name: "Supabase", icon: SiSupabase },
     ],
 
-    github: "#",
-    live: "#",
+    github: "https://github.com/zora-ao/guitar_shop",
   },
 
   {

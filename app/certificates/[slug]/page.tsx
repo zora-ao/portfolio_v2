@@ -20,6 +20,27 @@ interface CertificatePageProps {
   }>;
 }
 
+export async function generateMetadata({
+  params,
+}: CertificatePageProps) {
+  const { slug } = await params;
+
+  const certificate = certificates.find(
+    (certificate) => certificate.slug === slug
+  );
+
+  if (!certificate) {
+    return {
+      title: "Certificate not found",
+    };
+  }
+
+  return {
+    title: certificate.name,
+    description: certificate.description,
+  };
+}
+
 export default async function CertificatePage({
   params,
 }: CertificatePageProps) {
@@ -39,17 +60,21 @@ export default async function CertificatePage({
       <Breadcrumb>
         <BreadcrumbList>
           <BreadcrumbItem>
-            <BreadcrumbLink>
-              <Link href="/">Home</Link>
-            </BreadcrumbLink>
+            <BreadcrumbLink
+              render={<Link href="/">Home</Link>}
+            />
           </BreadcrumbItem>
 
           <BreadcrumbSeparator />
 
           <BreadcrumbItem>
-            <BreadcrumbLink>
-              <Link href="/#certificates">Certificates</Link>
-            </BreadcrumbLink>
+            <BreadcrumbLink
+              render={
+                <Link href="/#certificates">
+                  Certificates
+                </Link>
+              }
+            />
           </BreadcrumbItem>
 
           <BreadcrumbSeparator />
@@ -73,7 +98,7 @@ export default async function CertificatePage({
         <div
           className="
             overflow-hidden
-            rounded-xl
+            rounded-2xl
             border
             border-border
             bg-background/50
@@ -173,13 +198,13 @@ export default async function CertificatePage({
               className="
                 flex
                 flex-col
-                rounded-xl
+                rounded-2xl
                 border
                 border-border
                 bg-background/50
                 p-5
                 transition-colors
-                hover:border-primary/50
+                hover:border-brand/50
               "
             >
               <div className="space-y-2">
@@ -198,7 +223,7 @@ export default async function CertificatePage({
                   <span
                     key={technology}
                     className="
-                      rounded-md
+                      rounded-lg
                       bg-muted
                       px-2.5
                       py-1

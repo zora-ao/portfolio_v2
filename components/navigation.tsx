@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 
 import {
   User,
@@ -12,6 +13,7 @@ import {
 
 import { Section } from "@/types/navigation";
 import { AnimatedThemeToggler } from "./ui/animated-theme-toggler";
+import { useTheme } from "next-themes";
 
 interface BottomNavProps {
   activeSection: Section;
@@ -59,6 +61,13 @@ export default function BottomNav({
 
   const [isScrollingUp, setIsScrollingUp] =
     useState(false);
+
+  /*
+   * Single theme owner: next-themes.
+   * The toggler only animates + notifies; persistence
+   * and the DOM class stay in one place.
+   */
+  const { theme, setTheme } = useTheme();
 
   useEffect(() => {
     let lastScrollPosition = 0;
@@ -249,9 +258,9 @@ export default function BottomNav({
               flex
               items-center
               gap-8
-              rounded-xl
+              rounded-2xl
               border
-              border-primary
+              border-strong
               bg-background
               px-5
               py-2
@@ -273,18 +282,40 @@ export default function BottomNav({
             }
             aria-label={item.label}
             className="
+              relative
               transition-all
               duration-200
               hover:scale-110
             "
           >
+            {isActive && (
+              <motion.span
+                layoutId={
+                  mobile
+                    ? "nav-pill-mobile"
+                    : "nav-pill-desktop"
+                }
+                transition={{
+                  type: "spring",
+                  stiffness: 400,
+                  damping: 30,
+                }}
+                className="
+                  absolute
+                  -inset-2
+                  rounded-full
+                  bg-brand-muted
+                "
+              />
+            )}
             <Icon
               className={`
+                relative
                 h-5.5
                 w-5.5
                 ${
                   isActive
-                    ? "text-violet-500"
+                    ? "text-brand"
                     : "text-muted-foreground"
                 }
               `}
@@ -294,10 +325,12 @@ export default function BottomNav({
       })}
 
       <AnimatedThemeToggler
+        theme={theme === "light" ? "light" : "dark"}
+        onThemeChange={setTheme}
         className="
           rounded-full
           border
-          border-primary
+          border-strong
           p-2
         "
       />

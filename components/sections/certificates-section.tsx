@@ -2,8 +2,11 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { motion } from "framer-motion";
 
 import { ArrowRight } from "lucide-react";
+
+import { revealDelay } from "@/lib/animations";
 
 import { certificates } from "@/data/certificates";
 
@@ -27,13 +30,13 @@ export default function CertificatesSection() {
 
       {/* Certificates */}
       <div className="grid gap-6 md:grid-cols-2">
-        {certificates.map((certificate) => (
-          <Card
-            key={certificate.name}
-            className="
+        {certificates.map((certificate, index) => (
+          <motion.div key={certificate.name} {...revealDelay(index)}>
+            <Card
+              className="
               overflow-hidden
               border
-              border-primary
+              border-strong
               bg-background/50
               transition-all
               duration-300
@@ -86,7 +89,7 @@ export default function CertificatesSection() {
                 >
                   <Button
                     variant="outline"
-                    className="rounded-lg border-primary"
+                    className="rounded-lg border-strong"
                   >
                     View Certificate
                     <ArrowRight className="ml-2 h-4 w-4" />
@@ -94,7 +97,8 @@ export default function CertificatesSection() {
                 </Link>
               </div>
             </CardContent>
-          </Card>
+            </Card>
+          </motion.div>
         ))}
       </div>
     </div>
