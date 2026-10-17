@@ -135,7 +135,7 @@ function getThemeTransitionClipPaths(
 
 export const AnimatedThemeToggler = ({
   className,
-  duration = 400,
+  duration = 300,
   variant,
   fromCenter = false,
   theme,
@@ -250,7 +250,9 @@ export const AnimatedThemeToggler = ({
           {
             duration,
             // Star: linear avoids easing overshoot that fights polygon interpolation at t→1; VT group duration is synced above.
-            easing: shape === "star" ? "linear" : "ease-in-out",
+            // Circle: expo-out for a snappy reveal that settles quickly.
+            easing:
+              shape === "star" ? "linear" : "cubic-bezier(0.22, 1, 0.36, 1)",
             fill: "forwards",
             pseudoElement: "::view-transition-new(root)",
           }

@@ -1,176 +1,67 @@
 "use client"
 
-import React, {
-  useEffect,
-  useId,
-  useMemo,
-  useRef,
-  useState,
-} from "react"
-import { motion } from "motion/react"
+import React from "react"
 
 import { cn } from "@/lib/utils"
 
 /**
- * Deterministic pseudo-random generator (mulberry32).
+ * DotPatternProps
  *
- * Pure function of the seed, so server render, hydration,
- * and re-renders all agree — unlike Math.random(), which
- * causes hydration mismatches and reshuffles on every render.
+ * @param {number} [width=16] - Horizontal spacing between dots (px)
+ * @param {number} [height=16] - Vertical spacing between dots (px)
+ * @param {number} [cx=1] - Horizontal offset of the pattern seed (px)
+ * @param {number} [cy=1] - Vertical offset of the pattern seed (px)
+ * @param {number} [cr=1] - Radius of each dot (px)
+ * @param {string} [className] - Additional classes for the layer
  */
-function pseudoRandom(seed: number): number {
-  let t = (seed + 0x6d2b79f5) | 0
-  t = Math.imul(t ^ (t >>> 15), t | 1)
-  t ^= t + Math.imul(t ^ (t >>> 7), t | 61)
-  return ((t ^ (t >>> 14)) >>> 0) / 4294967296
-}
-
-/**
- *  DotPattern Component Props
- *
- * @param {number} [width=16] - The horizontal spacing between dots
- * @param {number} [height=16] - The vertical spacing between dots
- * @param {number} [x=0] - The x-offset of the entire pattern
- * @param {number} [y=0] - The y-offset of the entire pattern
- * @param {number} [cx=1] - The x-offset of individual dots
- * @param {number} [cy=1] - The y-offset of individual dots
- * @param {number} [cr=1] - The radius of each dot
- * @param {string} [className] - Additional CSS classes to apply to the SVG container
- * @param {boolean} [glow=false] - Whether dots should have a glowing animation effect
- */
-interface DotPatternProps extends React.SVGProps<SVGSVGElement> {
+interface DotPatternProps extends React.HTMLAttributes<HTMLDivElement> {
   width?: number
   height?: number
-  x?: number
-  y?: number
   cx?: number
   cy?: number
   cr?: number
-  className?: string
-  glow?: boolean
-  [key: string]: unknown
 }
 
 /**
- * DotPattern Component
+ * DotPattern
  *
- * A React component that creates an animated or static dot pattern background using SVG.
- * The pattern automatically adjusts to fill its container and can optionally display glowing dots.
+ * A dot-grid background drawn with a single repeating CSS
+ * `radial-gradient` instead of thousands of SVG nodes.
  *
- * @component
+ * The previous SVG implementation emitted one element per dot
+ * (~8,000 on a 1080p viewport), which made full-page renders —
+ * including `document.startViewTransition` snapshots used by the
+ * theme toggler — noticeably slow. This version is one element
+ * regardless of viewport size, so the pattern costs no layout work
+ * and view-transition snapshots stay cheap.
  *
- * @see DotPatternProps for the props interface.
- *
- * @example
- * // Basic usage
- * <DotPattern />
- *
- * // With glowing effect and custom spacing
- * <DotPattern
- *   width={20}
- *   height={20}
- *   glow={true}
- *   className="opacity-50"
- * />
- *
- * @notes
- * - The component is client-side only ("use client")
- * - Automatically responds to container size changes
- * - When glow is enabled, dots will animate with random delays and durations
- * - Uses Motion for animations
- * - Dots color can be controlled via the text color utility classes
+ * Dot color follows `currentColor`, so drive it with a `text-*`
+ * utility (e.g. `text-foreground/10`).
  */
-
 export function DotPattern({
   width = 16,
   height = 16,
-  x = 0,
-  y = 0,
   cx = 1,
   cy = 1,
   cr = 1,
   className,
-  glow = false,
+  style,
   ...props
 }: DotPatternProps) {
-  const id = useId()
-  const containerRef = useRef<SVGSVGElement>(null)
-  const [dimensions, setDimensions] = useState({ width: 0, height: 0 })
-
-  useEffect(() => {
-    const updateDimensions = () => {
-      if (containerRef.current) {
-        const { width, height } = containerRef.current.getBoundingClientRect()
-        setDimensions({ width, height })
-      }
-    }
-
-    updateDimensions()
-    window.addEventListener("resize", updateDimensions)
-    return () => window.removeEventListener("resize", updateDimensions)
-  }, [])
-
-  const dots = useMemo(() => {
-    const cols = Math.ceil(dimensions.width / width)
-    const rows = Math.ceil(dimensions.height / height)
-
-    return Array.from({ length: cols * rows }, (_, i) => {
-      const col = cols === 0 ? 0 : i % cols
-      const row = cols === 0 ? 0 : Math.floor(i / cols)
-      return {
-        x: col * width + cx + x,
-        y: row * height + cy + y,
-        delay: pseudoRandom(i * 2) * 5,
-        duration: pseudoRandom(i * 2 + 1) * 3 + 2,
-      }
-    })
-  }, [dimensions.width, dimensions.height, width, height, cx, cy, x, y])
-
   return (
-    <svg
-      ref={containerRef}
+    <div
       aria-hidden="true"
       className={cn(
-        "pointer-events-none absolute inset-0 h-full w-full text-neutral-400/80",
+        "pointer-events-none absolute inset-0 h-full w-full",
         className
       )}
+      style={{
+        backgroundImage: `radial-gradient(circle, currentColor ${cr}px, transparent ${cr}px)`,
+        backgroundSize: `${width}px ${height}px`,
+        backgroundPosition: `${cx}px ${cy}px`,
+        ...style,
+      }}
       {...props}
-    >
-      <defs>
-        <radialGradient id={`${id}-gradient`}>
-          <stop offset="0%" stopColor="currentColor" stopOpacity="1" />
-          <stop offset="100%" stopColor="currentColor" stopOpacity="0" />
-        </radialGradient>
-      </defs>
-      {dots.map((dot) => (
-        <motion.circle
-          key={`${dot.x}-${dot.y}`}
-          cx={dot.x}
-          cy={dot.y}
-          r={cr}
-          fill={glow ? `url(#${id}-gradient)` : "currentColor"}
-          initial={glow ? { opacity: 0.4, scale: 1 } : {}}
-          animate={
-            glow
-              ? {
-                  opacity: [0.4, 1, 0.4],
-                  scale: [1, 1.5, 1],
-                }
-              : {}
-          }
-          transition={
-            glow
-              ? {
-                  duration: dot.duration,
-                  repeat: Infinity,
-                  repeatType: "reverse",
-                  delay: dot.delay,
-                  ease: "easeInOut",
-                }
-              : {}
-          }
-        />
-      ))}
-    </svg>
+    />
   )
 }
