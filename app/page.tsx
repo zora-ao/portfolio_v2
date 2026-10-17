@@ -27,7 +27,7 @@ export default function Home() {
           z-0
           h-full
           w-full
-          fill-foreground/10
+          text-foreground/10
           animate-drift
           [mask-image:linear-gradient(to_bottom_right,white,transparent,transparent)]
         "

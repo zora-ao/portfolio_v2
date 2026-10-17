@@ -4,6 +4,7 @@ import "./globals.css";
 import { cn } from "@/lib/utils";
 import { Toaster } from "sonner";
 import { ThemeProvider } from "@/components/providers/theme-provider";
+import { FlyingRobot } from "@/components/flying-robot";
 
 const inter = Inter({subsets:['latin'],variable:'--font-sans'});
 
@@ -74,6 +75,7 @@ export default function RootLayout({
         <ThemeProvider>
           {children}
         </ThemeProvider>
+        <FlyingRobot />
       </body>
     </html>
   );
