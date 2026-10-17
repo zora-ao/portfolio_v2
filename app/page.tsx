@@ -77,9 +77,9 @@ export default function Home() {
       {/* ================= DESKTOP ================= */}
       <div className="relative z-10 hidden h-full lg:block">
         <div className="mx-auto h-full max-w-7xl">
-          <div className="grid h-full gap-8 lg:grid-cols-[430px_1fr]">
+          <div className="grid h-full gap-2 lg:grid-cols-[360px_1fr]">
             {/* Left Side */}
-            <aside className="flex h-full flex-col justify-center gap-4 overflow-hidden pr-2 scrollbar-hide">
+            <aside className="flex h-full flex-col justify-center gap-4 overflow-hidden scrollbar-hide">
               <div className="space-y-4">
                 {[
                   <ProfileCard key="profile" />,

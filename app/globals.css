@@ -91,9 +91,6 @@
   --color-card-foreground: var(--card-foreground);
   --color-card: var(--card);
 
-  --shadow-card: var(--shadow-card);
-  --shadow-pop: var(--shadow-pop);
-
   --radius-sm: calc(var(--radius) * 0.6);
   --radius-md: calc(var(--radius) * 0.8);
   --radius-lg: var(--radius);
@@ -152,9 +149,6 @@
   --chart-3: oklch(0.439 0 0);
   --chart-4: oklch(0.371 0 0);
   --chart-5: oklch(0.269 0 0);
-
-  --shadow-card: 0 1px 2px oklch(0 0 0 / 6%), 0 8px 24px -12px oklch(0 0 0 / 12%);
-  --shadow-pop: 0 12px 40px -12px oklch(0.55 0.14 200 / 25%);
 
   --radius: 0.625rem;
 
@@ -225,9 +219,6 @@
   --chart-4: oklch(0.4 0.06 200);
   --chart-5: oklch(0.32 0.05 200);
 
-  --shadow-card: 0 0 0 1px oklch(1 0 0 / 4%), 0 16px 40px -16px oklch(0 0 0 / 60%);
-  --shadow-pop: 0 8px 40px -8px oklch(0.72 0.14 200 / 35%);
-
   --sidebar: oklch(0.18 0.012 240);
   --sidebar-foreground: oklch(0.985 0 0);
 
@@ -242,9 +233,8 @@
 }
 
 /* Card surfaces are token-driven via the `variant` prop in
-   components/ui/card.tsx (elevated = bg-card + shadow-card).
-   Shadows and borders are owned there — not overridden here,
-   so cards never stack two competing shadows. */
+   components/ui/card.tsx (elevated = bg-card + border-border).
+   Borders are owned there — not overridden here. */
 
 /* ============================================
    BASE
