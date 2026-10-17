@@ -299,6 +299,117 @@
   animation: glow-in 1.2s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
+/* Decorative robot.
+   It rests in the bottom-right corner and is draggable; releasing it
+   flies back home (animated in FlyingRobot). The slow tilt keeps it
+   alive at rest, and the propeller motion comes from the GIF itself. */
+.flying-robot {
+  --robot-size: 80px;
+}
+
+.robot-gif {
+  width: var(--robot-size);
+  height: auto;
+  animation: robot-tilt 12s ease-in-out -3s infinite alternate;
+}
+
+@keyframes robot-tilt {
+  from {
+    transform: rotate(-6deg);
+  }
+  to {
+    transform: rotate(6deg);
+  }
+}
+
+/* Click / drag target. `touch-action: none` lets touch drags move the
+   robot instead of scrolling the page. */
+.robot-hit {
+  appearance: none;
+  position: relative;
+  display: block;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: grab;
+  touch-action: none;
+  scale: 1;
+  transition: scale 0.2s ease;
+}
+
+.robot-hit[data-dragging="true"] {
+  cursor: grabbing;
+  scale: 1.06;
+}
+
+/* Freeze the tilt while the speech bubble is open. */
+.robot-hit[data-paused="true"] .robot-gif {
+  animation-play-state: paused !important;
+}
+
+/* Speech bubble, anchored to the robot's top-right so it never spills
+   off the right edge of the viewport. */
+.robot-bubble {
+  position: absolute;
+  right: 0;
+  bottom: 100%;
+  z-index: 1;
+  width: max-content;
+  max-width: 16rem;
+  margin-bottom: 0.6rem;
+  padding: 0.5rem 0.85rem;
+  border: 1px solid var(--border);
+  border-radius: 0.75rem;
+  background: var(--popover);
+  color: var(--popover-foreground);
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.2;
+  white-space: nowrap;
+  box-shadow: 0 10px 30px oklch(0 0 0 / 0.28);
+  scale: 0.9;
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    opacity 0.18s ease,
+    scale 0.24s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.robot-bubble[data-open="true"] {
+  opacity: 1;
+  scale: 1;
+}
+
+/* When it has had enough of being yanked around. */
+.robot-bubble[data-mood="angry"] {
+  color: var(--destructive);
+  border-color: color-mix(in oklch, var(--destructive) 45%, var(--border));
+}
+
+.robot-bubble[data-mood="angry"]::after {
+  border-color: color-mix(in oklch, var(--destructive) 45%, var(--border));
+}
+
+.robot-bubble::after {
+  content: "";
+  position: absolute;
+  right: 2.75rem;
+  bottom: -0.36rem;
+  width: 0.6rem;
+  height: 0.6rem;
+  background: var(--popover);
+  border: 1px solid var(--border);
+  border-top: 0;
+  border-left: 0;
+  rotate: 45deg;
+}
+
+@media (min-width: 1024px) {
+  .flying-robot {
+    --robot-size: 96px;
+  }
+}
+
 /* ============================================
    REDUCED MOTION
    JS motion is already gated by MotionConfig
@@ -316,6 +427,13 @@
   *::after {
     animation-duration: 0.01ms !important;
     transition-duration: 0.01ms !important;
+  }
+
+  /* The robot is the site's signature flourish, so it keeps its tilt even
+     when motion is reduced — the blanket rule above is re-asserted here
+     with the full duration. */
+  .robot-gif {
+    animation-duration: 12s !important;
   }
 }
 
